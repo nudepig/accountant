@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_balance">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+               <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <h2>
+                            <span t-field="o.name"/>
+                        </h2>
+                        <table class="table table-condensed" style="margin: 30px 2px 30px 2px;">
+                            <thead>
+                                <tr>
+                                    <th ><span>资产</span></th>
+                                    <th><span>期末余额</span></th>
+                                    <th><span>年初余额</span></th>
+                                    <th><span>负债和所有者权益</span></th>
+                                    <th><span>期末余额</span></th>
+                                    <th><span>年初余额</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="o_input" style="border: none!important;">
+                                <tr>
+                                    <td><span>货币资金</span></td>
+                                    <td><span t-field="o.amount_b"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>短期借款</span></td>
+                                    <td><span t-field="o.debt_a"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>交易性金融资产</span></td>
+                                    <td><span t-field="o.amount_c"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>交易性金融负债</span></td>
+                                    <td><span t-field="o.debt_b"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>应收票据</span></td>
+                                    <td><span t-field="o.amount_d"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>应付票据</span></td>
+                                    <td><span t-field="o.debt_c"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>应收账款</span></td>
+                                    <td><span t-field="o.amount_e"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>应付账款</span></td>
+                                    <td><span t-field="o.debt_d"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>预付款项</span></td>
+                                    <td><span t-field="o.amount_f"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>预收款项</span></td>
+                                    <td><span t-field="o.debt_e"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>应收股利</span></td>
+                                    <td><span t-field="o.amount_g"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>应付职工薪酬</span></td>
+                                    <td><span t-field="o.debt_f"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>其他应收款</span></td>
+                                    <td><span t-field="o.amount_h"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>应交税费</span></td>
+                                    <td><span t-field="o.debt_g"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>存货</span></td>
+                                    <td><span t-field="o.amount_i"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>应付利息</span></td>
+                                    <td><span t-field="o.debt_a"/></td>
+                                    <td><span t-field="o.debt_h"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>一年内到期的非流动资产</span></td>
+                                    <td><span t-field="o.amount_j"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>应付股利</span></td>
+                                    <td><span t-field="o.debt_i"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>其他流动资产</span></td>
+                                    <td><span t-field="o.amount_k"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>其他应付款</span></td>
+                                    <td><span t-field="o.debt_j"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="font-weight: bold;">流动资产合计:</span></td>
+                                    <td><span t-field="o.amount_l"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>一年内到期的非流动负债</span></td>
+                                    <td><span t-field="o.debt_k"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>可供出售金融资产</span></td>
+                                    <td><span t-field="o.amount_m"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>其他流动负债</span></td>
+                                    <td><span t-field="o.debt_l"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>持有至到期投资</span></td>
+                                    <td><span t-field="o.amount_n"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span style="font-weight: bold;">流动负债合计:</span></td>
+                                    <td><span t-field="o.debt_m"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>长期应收款</span></td>
+                                    <td><span t-field="o.amount_o"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>长期借款</span></td>
+                                    <td><span t-field="o.debt_n"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>长期股权投资</span></td>
+                                    <td><span t-field="o.amount_p"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>应付债券</span></td>
+                                    <td><span t-field="o.debt_o"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>投资性房地产</span></td>
+                                    <td><span t-field="o.amount_q"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>长期应付款</span></td>
+                                    <td><span t-field="o.debt_p"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>固定资产</span></td>
+                                    <td><span t-field="o.amount_r"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>专项应付款</span></td>
+                                    <td><span t-field="o.debt_q"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>在建工程</span></td>
+                                    <td><span t-field="o.amount_s"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>预计负债</span></td>
+                                    <td><span t-field="o.debt_r"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>工程物资</span></td>
+                                    <td><span t-field="o.amount_t"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>递延所得税负债</span></td>
+                                    <td><span t-field="o.debt_s"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>固定资产清理</span></td>
+                                    <td><span t-field="o.amount_v"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>其他非流动负债</span></td>
+                                    <td><span t-field="o.debt_t"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>无形资产</span></td>
+                                    <td><span t-field="o.amount_x"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span style="font-weight: bold;">非流动负债合计:</span></td>
+                                    <td><span t-field="o.debt_u"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>开发支出</span></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span style="font-weight: bold;">负债合计:</span></td>
+                                    <td><span t-field="o.debt_v"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>商誉</span></td>
+                                    <td><span t-field="o.amount_z"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>实收资本</span></td>
+                                    <td><span t-field="o.equity_a"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>长期待摊费用</span></td>
+                                    <td><span t-field="o.amount_aa"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>资本公积</span></td>
+                                    <td><span t-field="o.equity_b"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>递延所得税资产</span></td>
+                                    <td><span t-field="o.amount_bb"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>盈余公积</span></td>
+                                    <td><span t-field="o.equity_c"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>其他非流动资产</span></td>
+                                    <td><span t-field="o.amount_cc"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span>未分配利润</span></td>
+                                    <td><span t-field="o.equity_d"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="font-weight: bold;">非流动资产合计:</span></td>
+                                    <td><span t-field="o.amount_dd"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span style="font-weight: bold;">所有者权益合计:</span></td>
+                                    <td><span t-field="o.equity_e"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="font-weight: 900;">资产总计:</span></td>
+                                    <td><span t-field="o.amount_ee"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                    <td><span style="font-weight: 900;">负债和所有者权益总计:</span></td>
+                                    <td><span t-field="o.equity_f"/></td>
+                                    <td><span t-field="o.amount_y"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+              </t>
+            </t>
+        </t>
+    </template>
+        <!-- QWeb Reports -->
+        <report
+            string="资产负债表"
+            id="action_report_balance"
+            model="accountant.balance"
+            report_type="qweb-html"
+            name="accountant.report_balance"
+            file="accountant.report_balance"
+            print_report_name="'%s' %((object.name).replace('-',''))"
+        />
+</odoo>

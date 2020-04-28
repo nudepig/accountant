@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_cash">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+               <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <h2>
+                            <span t-field="o.name"/>
+                        </h2>
+                        <table class="table table-sm" style="margin: 30px 2px 30px 2px;">
+                            <thead>
+                                <tr>
+                                    <th ><span style="padding-left: 0.7cm;">项目</span></th>
+                                    <th><span>累计数</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span>销售商品、提供劳务收到的现金</span></td>
+                                    <td><span t-field="o.amount_a"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>收到的其他与经营活动有关的现金</span></td>
+                                    <td><span t-field="o.amount_b"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>现金流入小计</span></td>
+                                    <td><span t-field="o.amount_c"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>购买商品、接受劳务支付的现金</span></td>
+                                    <td><span t-field="o.amount_d"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>支付给职工以及为职工支付的现金</span></td>
+                                    <td><span t-field="o.amount_e"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>支付的各项税费</span></td>
+                                    <td><span t-field="o.amount_f"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>支付的其他与经营活动有关的费用</span></td>
+                                    <td><span t-field="o.amount_g"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>现金流出小计</span></td>
+                                    <td><span t-field="o.amount_h"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>经营活动产生的现金流量净额</span></td>
+                                    <td><span t-field="o.amount_i"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+              </t>
+            </t>
+        </t>
+    </template>
+        <!-- QWeb Reports -->
+        <report
+            string="银行现金流量表"
+            id="action_report_cash"
+            model="accountant.cash"
+            report_type="qweb-html"
+            name="accountant.report_cash"
+            file="accountant.report_cash"
+            print_report_name="'%s' %((object.name).replace('-',''))"
+        />
+</odoo>

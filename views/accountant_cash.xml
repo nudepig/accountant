@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="cash_list_action">
+            <field name="name">银行现金流量表</field>
+            <field name="res_model">accountant.cash</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+               <p class="oe_view_accountant_create">创建第一个会计报表
+               </p>
+            </field>
+        </record>
+
+<!--表单视图-->
+
+        <record id="cash_book_view_form" model="ir.ui.view">
+            <field name="name">银行现金流量表</field>
+            <field name="model">accountant.cash</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="company_id"/>
+                            </group>
+                            <group>
+                                <field name="startDate" editable='0' />
+                                <field name="endDate"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="fast_period" widget="ac_fast_period" />
+                        </group>
+                        <footer>
+                            <button name="do_cash" type="object" string="开始计算" class='btn-primary' />
+                        </footer>
+                        <table class="table table-condensed" style="margin: 30px 2px 30px 2px;">
+                            <thead>
+                                <tr>
+                                    <th ><span style="padding-left: 0.7cm;">项目</span></th>
+                                    <th><span>累计数</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="o_input" style="border: none!important;">
+                                <tr>
+                                    <td><span>销售商品、提供劳务收到的现金</span></td>
+                                    <td><field name="amount_a" /></td>
+                                </tr>
+                                <tr>
+                                    <td><span>收到的其他与经营活动有关的现金</span></td>
+                                    <td><field name="amount_b" /></td>
+                                </tr>
+                                <tr>
+                                    <td><span>现金流入小计</span></td>
+                                    <td><field name="amount_c" /></td>
+                                </tr>
+                                <tr>
+                                    <td><span>购买商品、接受劳务支付的现金</span></td>
+                                    <td><field name="amount_d" /></td>
+                                </tr>
+                                <tr>
+                                    <td><span>支付给职工以及为职工支付的现金</span></td>
+                                    <td><field name="amount_e" /></td>
+                                </tr>
+                                <tr>
+                                    <td><span>支付的各项税费</span></td>
+                                    <td><field name="amount_f" /></td>
+                                </tr>
+                                <tr>
+                                    <td><span>支付的其他与经营活动有关的费用</span></td>
+                                    <td><field name="amount_g" /></td>
+                                </tr>
+                                <tr>
+                                    <td><span>现金流出小计</span></td>
+                                    <td><field name="amount_h" /></td>
+                                </tr>
+                                <tr>
+                                    <td><span>经营活动产生的现金流量净额</span></td>
+                                    <td><field name="amount_i" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!--自定义树状视图-->
+        <record id="cash_view_tree" model="ir.ui.view">
+            <field name="name">报表</field>
+            <field name="model">accountant.cash</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <menuitem id="cash_menu" name="银行现金流量表" parent="main_accountant_menu" action="cash_list_action"/>
+
+     </data>
+</odoo>

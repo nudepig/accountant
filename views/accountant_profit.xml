@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="course_list_action">
+            <field name="name">利润表</field>
+            <field name="res_model">accountant.profit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+               <p class="oe_view_accountant_create">创建第一个会计报表
+               </p>
+            </field>
+        </record>
+
+<!--表单视图-->
+
+        <record id="profit_view_form" model="ir.ui.view">
+            <field name="name">利润表</field>
+            <field name="model">accountant.profit</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="company_id"/>
+                            </group>
+                            <group>
+                                <field name="startDate" editable='0' />
+                                <field name="endDate"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="fast_period" widget="ac_fast_period" />
+                        </group>
+                        <footer>
+                            <button name="do_profit" type="object" string="开始计算利润表" class='btn-primary' />
+                        </footer>
+                        <table class="table table-condensed" style="margin: 30px 2px 30px 2px;">
+                            <thead>
+                                <tr>
+                                    <th ><span style="padding-left: 0.7cm;">项目</span></th>
+                                    <th><span>行次</span></th>
+                                    <th><span>累计数</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="o_input" style="border: none!important;">
+                                <tr>
+                                    <td><span>一、营业收入</span></td>
+                                    <td><span>1</span></td>
+                                    <td><field name="amount_a" /></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：营业成本</span></td>
+                                    <td><span>2</span></td>
+                                    <td><field name="amount_b"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>二、毛利润（亏损以"-"号填列）</span></td>
+                                    <td><span>3</span></td>
+                                    <td><field name="amount_c" /></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：其他业务利润</span></td>
+                                    <td><span>4</span></td>
+                                    <td><field name="amount_d"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：销售费用</span></td>
+                                    <td><span>5</span></td>
+                                    <td><field name="amount_e"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：管理费用</span></td>
+                                    <td><span>6</span></td>
+                                    <td><field name="amount_f"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：财务费用</span></td>
+                                    <td><span>7</span></td>
+                                    <td><field name="amount_g"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：资产减值损失</span></td>
+                                    <td><span>8</span></td>
+                                    <td><field name="amount_n"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：投资收益（损失以“-”号填列）</span></td>
+                                    <td><span>9</span></td>
+                                    <td><field name="amount_o"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：公允价值变动收益（损失以“-”号填列）</span></td>
+                                    <td><span>10</span></td>
+                                    <td><field name="amount_p"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>三、营业利润（亏损以"-"号填列）</span></td>
+                                    <td><span>11</span></td>
+                                    <td><field name="amount_h" /></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：营业外收入</span></td>
+                                    <td><span>12</span></td>
+                                    <td><field name="amount_i"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：营业外支出</span></td>
+                                    <td><span>13</span></td>
+                                    <td><field name="amount_j"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>四、利润总额（亏损以"-"号填列）</span></td>
+                                    <td><span>14</span></td>
+                                    <td><field name="amount_k" /></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：所得税</span></td>
+                                    <td><span>15</span></td>
+                                    <td><field name="amount_l"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>五、净利润（净亏损以"-"号填列）</span></td>
+                                    <td><span>16</span></td>
+                                    <td><field name="amount_m" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!--自定义树状视图-->
+        <record id="profit_view_tree" model="ir.ui.view">
+            <field name="name">报表</field>
+            <field name="model">accountant.profit</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_accountant_menu" name="会计"/>
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <!--报表目录-->
+        <!--结转损益-->
+
+        <menuitem id="accountant_profit" name="利润表" parent="main_accountant_menu"/>
+        <menuitem id="accountant_profit_sum" name="按公司利润表" parent="accountant_profit" action="course_list_action"/>
+
+
+
+     </data>
+</odoo>

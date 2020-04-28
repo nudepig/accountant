@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ <record model="ir.actions.act_window" id="action_accountant_sales_percentage">
+        <field name="name">销售提成</field>
+        <field name="res_model">accountant.sales.percentage</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+           <p class="oe_view_accountant_create">创建第一个会计报表
+           </p>
+        </field>
+    </record>
+
+     <record id="accountant_sales_percentage_view_form" model="ir.ui.view">
+            <field name="name">销售提成</field>
+            <field name="model">accountant.sales.percentage</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="remove_data" type="object"  string="清除数据" class="oe_highlight" />
+                     </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="company_id"/>
+                                <field name="user_id" domain="[('company_id', '=', company_id)]"/>
+                            </group>
+                            <group>
+                                <field name="startDate" editable='0' />
+                                <field name="endDate"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="fast_period" widget="ac_fast_period" />
+                        </group>
+                        <footer>
+                            <button name="accountant_sales" type="object" string="开始计算" class='btn-primary' />
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+    </record>
+
+    <!--自定义树状视图-->
+    <record id="accountant_sales_percentage_view_tree" model="ir.ui.view">
+        <field name="name">销售提成</field>
+        <field name="model">accountant.sales.percentage</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="company_id"/>
+                <field name="product_id_name"/>
+                <field name="state"/>
+                <field name="number"/>
+                <field name="date"/>
+                <field name="user_id_name"/>
+                <field name="team_id"/>
+                <field name="origin"/>
+                <field name="stock_picking"/>
+                <field name="product_id"/>
+                <field name="brand"/>
+                <field name="uom_id"/>
+                <field name="quantity"/>
+                <field name="price_unit"/>
+                <field name="total"/>
+                <field name="price_subtotal_signed"/>
+                <field name="receivable"/>
+                <field name="receivable_income"/>
+                <field name="discount"/>
+                <field name="balance"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="accountant_sales_percentage_search" model="ir.ui.view">
+        <field name="name">accountant.sales.percentage.search</field>
+        <field name="model">accountant.sales.percentage</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id"/>
+                <field name="company_id"/>
+                <field name="state"/>
+                <field name="number"/>
+                <field name="origin"/>
+                <field name="brand"/>
+
+                <filter string="名称" name="name" context="{'group_by':'name'}"/>
+                <filter string="公司" name="company" groups="base.group_multi_company" context="{'group_by':'company_id'}"/>
+                <filter string="业务伙伴" name="Partner" context="{'group_by':'partner_id'}"/>
+                <filter string="公司" name="company_id" domain="[('company_id','=',1)]"/>
+                <filter string="发票" name="number" context="{'group_by':'number'}"/>
+                <filter string="源文档" name="origin" context="{'group_by':'origin'}"/>
+                <filter string="品牌" name="brand" context="{'group_by':'brand'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!--<record id="accountant_gross_pivot" model="ir.ui.view">-->
+        <!--<field name="model">accountant.customer.gross</field>-->
+        <!--<field name="arch" type="xml">-->
+            <!--<pivot>-->
+                <!--<field name="partner_id_name" type="col" />-->
+                <!--<field name="company_id" />-->
+                <!--<field name="startDate" interval="week" />-->
+                <!--<field name="income" type="measure" />-->
+                <!--<field name="cost" type="measure" />-->
+                <!--<field name="gross_profit" type="measure" />-->
+                <!--<field name="gross_rate" type="measure" />-->
+            <!--</pivot>-->
+        <!--</field>-->
+    <!--</record>-->
+
+    <!--<record id="accountant_gross_graph" model="ir.ui.view">-->
+        <!--<field name="model">accountant.customer.gross</field>-->
+        <!--<field name="arch" type="xml">-->
+            <!--<graph type="bar">-->
+                <!--<field name="partner_id_name" />-->
+                <!--<field name="income" type="measure" />-->
+            <!--</graph>-->
+        <!--</field>-->
+    <!--</record>-->
+
+
+    <menuitem id="accountant_sales" name="销售" parent="main_accountant_menu"/>
+    <menuitem id="accountant_sales_percentage" name="销售提成" parent="accountant_sales" action="action_accountant_sales_percentage"/>
+
+</odoo>

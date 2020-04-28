@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.actions.act_window" id="accountant_stock_rate_action">
+        <field name="name">库存周转率</field>
+        <field name="res_model">accountant.stock</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+           <p class="oe_view_accountant_create">创建第一个会计报表
+           </p>
+        </field>
+    </record>
+
+    <record id="stock_rate_view_tree2" model="ir.ui.view">
+            <field name="name">stock_rate_view_tree2</field>
+            <field name="model">accountant.stock.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="company_id"/>
+                    <field name="category"/>
+                    <field name="stock_s"/>
+                    <field name="stock_e"/>
+                    <field name="stock_cost"/>
+                    <field name="stock_rate"/>
+                </tree>
+            </field>
+    </record>
+
+
+     <record id="stock_rate_view_form" model="ir.ui.view">
+            <field name="name">库存周转率</field>
+            <field name="model">accountant.stock</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="company_id"/>
+                            </group>
+                            <group>
+                                <field name="startDate" editable='0' />
+                                <field name="endDate"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="fast_period" widget="ac_fast_period" />
+                        </group>
+                        <footer>
+                            <button name="accountant_open_table" type="object" string="开始计算库存周转率" class='btn-primary' />
+                        </footer>
+                        <group>
+                            <field name="line_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--自定义树状视图-->
+        <record id="stock_rate_view_tree" model="ir.ui.view">
+            <field name="name">报表</field>
+            <field name="model">accountant.stock</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+    <menuitem id="accountant_stock" name="库存查询" parent="main_accountant_menu"/>
+        <menuitem id="accountant_stock_rate" name="库存周转率" parent="accountant_stock" action="accountant_stock_rate_action"/>
+</odoo>
+

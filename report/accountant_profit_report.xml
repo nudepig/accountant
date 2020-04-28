@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_profit">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+               <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <h2>
+                            <span t-field="o.name"/>
+                        </h2>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th ><span style="padding-left: 0.7cm;">项目</span></th>
+                                    <th><span>行次</span></th>
+                                    <th><span>累计数</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="o_input" style="border: none!important;">
+                                <tr>
+                                    <td><span>一、营业收入</span></td>
+                                    <td><span>1</span></td>
+                                    <td><span t-field="o.amount_a"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：营业成本</span></td>
+                                    <td><span>2</span></td>
+                                    <td><span t-field="o.amount_b"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>二、毛利润（亏损以"-"号填列）</span></td>
+                                    <td><span>3</span></td>
+                                    <td><span t-field="o.amount_c"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：其他业务利润</span></td>
+                                    <td><span>4</span></td>
+                                    <td><span t-field="o.amount_d"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：销售费用</span></td>
+                                    <td><span>5</span></td>
+                                    <td><span t-field="o.amount_e"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：管理费用</span></td>
+                                    <td><span>6</span></td>
+                                    <td><span t-field="o.amount_f"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：财务费用</span></td>
+                                    <td><span>7</span></td>
+                                    <td><span t-field="o.amount_g"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：资产减值损失</span></td>
+                                    <td><span>8</span></td>
+                                    <td><span t-field="o.amount_n"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：投资收益（损失以“-”号填列）</span></td>
+                                    <td><span>9</span></td>
+                                    <td><span t-field="o.amount_o"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：公允价值变动收益（损失以“-”号填列）</span></td>
+                                    <td><span>10</span></td>
+                                    <td><span t-field="o.amount_p"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>三、营业利润（亏损以"-"号填列）</span></td>
+                                    <td><span>11</span></td>
+                                    <td><span t-field="o.amount_h"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：营业外收入</span></td>
+                                    <td><span>12</span></td>
+                                    <td><span t-field="o.amount_i"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：营业外支出</span></td>
+                                    <td><span>13</span></td>
+                                    <td><span t-field="o.amount_j"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>四、利润总额（亏损以"-"号填列）</span></td>
+                                    <td><span>14</span></td>
+                                    <td><span t-field="o.amount_k"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：所得税</span></td>
+                                    <td><span>15</span></td>
+                                    <td><span t-field="o.amount_l"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>五、净利润（净亏损以"-"号填列）</span></td>
+                                    <td><span>16</span></td>
+                                    <td><span t-field="o.amount_m"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+              </t>
+            </t>
+        </t>
+    </template>
+
+     <template id="report_profit_team">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+               <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <h2>
+                            <span t-field="o.name"/>
+                        </h2>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th ><span style="padding-left: 0.7cm;">项目</span></th>
+                                    <th><span>行次</span></th>
+                                    <th><span>累计数</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="o_input" style="border: none!important;">
+                                <tr>
+                                    <td><span>一、营业收入</span></td>
+                                    <td><span>1</span></td>
+                                    <td><span t-field="o.amount_a"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：营业成本</span></td>
+                                    <td><span>2</span></td>
+                                    <td><span t-field="o.amount_b"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>二、毛利润（亏损以"-"号填列）</span></td>
+                                    <td><span>3</span></td>
+                                    <td><span t-field="o.amount_c"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：其他业务利润</span></td>
+                                    <td><span>4</span></td>
+                                    <td><span t-field="o.amount_d"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：销售费用</span></td>
+                                    <td><span>5</span></td>
+                                    <td><span t-field="o.amount_e"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：管理费用</span></td>
+                                    <td><span>6</span></td>
+                                    <td><span t-field="o.amount_f"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：财务费用</span></td>
+                                    <td><span>7</span></td>
+                                    <td><span t-field="o.amount_g"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：资产减值损失</span></td>
+                                    <td><span>8</span></td>
+                                    <td><span t-field="o.amount_n"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：投资收益（损失以“-”号填列）</span></td>
+                                    <td><span>9</span></td>
+                                    <td><span t-field="o.amount_o"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：公允价值变动收益（损失以“-”号填列）</span></td>
+                                    <td><span>10</span></td>
+                                    <td><span t-field="o.amount_p"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>三、营业利润（亏损以"-"号填列）</span></td>
+                                    <td><span>11</span></td>
+                                    <td><span t-field="o.amount_h"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：营业外收入</span></td>
+                                    <td><span>12</span></td>
+                                    <td><span t-field="o.amount_i"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：营业外支出</span></td>
+                                    <td><span>13</span></td>
+                                    <td><span t-field="o.amount_j"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>四、利润总额（亏损以"-"号填列）</span></td>
+                                    <td><span>14</span></td>
+                                    <td><span t-field="o.amount_k"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：所得税</span></td>
+                                    <td><span>15</span></td>
+                                    <td><span t-field="o.amount_l"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>五、净利润（净亏损以"-"号填列）</span></td>
+                                    <td><span>16</span></td>
+                                    <td><span t-field="o.amount_m"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+              </t>
+            </t>
+        </t>
+    </template>
+    <template id="report_profit_salesperson">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+               <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <h2>
+                            <span t-field="o.name"/>
+                        </h2>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th ><span style="padding-left: 0.7cm;">项目</span></th>
+                                    <th><span>行次</span></th>
+                                    <th><span>累计数</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="o_input" style="border: none!important;">
+                                <tr>
+                                    <td><span>一、营业收入</span></td>
+                                    <td><span>1</span></td>
+                                    <td><span t-field="o.amount_a"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：营业成本</span></td>
+                                    <td><span>2</span></td>
+                                    <td><span t-field="o.amount_b"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>二、毛利润（亏损以"-"号填列）</span></td>
+                                    <td><span>3</span></td>
+                                    <td><span t-field="o.amount_c"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：其他业务利润</span></td>
+                                    <td><span>4</span></td>
+                                    <td><span t-field="o.amount_d"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：销售费用</span></td>
+                                    <td><span>5</span></td>
+                                    <td><span t-field="o.amount_e"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：管理费用</span></td>
+                                    <td><span>6</span></td>
+                                    <td><span t-field="o.amount_f"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：财务费用</span></td>
+                                    <td><span>7</span></td>
+                                    <td><span t-field="o.amount_g"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：资产减值损失</span></td>
+                                    <td><span>8</span></td>
+                                    <td><span t-field="o.amount_n"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：投资收益（损失以“-”号填列）</span></td>
+                                    <td><span>9</span></td>
+                                    <td><span t-field="o.amount_o"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：公允价值变动收益（损失以“-”号填列）</span></td>
+                                    <td><span>10</span></td>
+                                    <td><span t-field="o.amount_p"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>三、营业利润（亏损以"-"号填列）</span></td>
+                                    <td><span>11</span></td>
+                                    <td><span t-field="o.amount_h"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">加：营业外收入</span></td>
+                                    <td><span>12</span></td>
+                                    <td><span t-field="o.amount_i"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：营业外支出</span></td>
+                                    <td><span>13</span></td>
+                                    <td><span t-field="o.amount_j"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>四、利润总额（亏损以"-"号填列）</span></td>
+                                    <td><span>14</span></td>
+                                    <td><span t-field="o.amount_k"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="padding-left: 0.7cm;">减：所得税</span></td>
+                                    <td><span>15</span></td>
+                                    <td><span t-field="o.amount_l"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span>五、净利润（净亏损以"-"号填列）</span></td>
+                                    <td><span>16</span></td>
+                                    <td><span t-field="o.amount_m"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+              </t>
+            </t>
+        </t>
+    </template>
+        <!-- QWeb Reports -->
+        <report
+            string="利润表"
+            id="action_report_profit"
+            model="accountant.profit"
+            report_type="qweb-html"
+            name="accountant.report_profit"
+            file="accountant.report_profit"
+            print_report_name="'%s' %((object.name).replace('-',''))"
+        />
+        <report
+            string="按销售团队利润表"
+            id="action_report_profit_team"
+            model="accountant.team"
+            report_type="qweb-html"
+            name="accountant.report_profit_team"
+            file="accountant.report_profit_team"
+            print_report_name="'%s' %((object.name).replace('-',''))"
+        />
+    <report
+            string="按销售人员利润表"
+            id="action_report_profit_salesperson"
+            model="accountant.salesperson"
+            report_type="qweb-html"
+            name="accountant.report_profit_salesperson"
+            file="accountant.report_profit_salesperson"
+            print_report_name="'%s' %((object.name).replace('-',''))"
+        />
+</odoo>

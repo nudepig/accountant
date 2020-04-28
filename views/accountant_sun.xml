@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="accountant_sun_action">
+            <field name="name">结转损益</field>
+            <field name="res_model">accountant.sun</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+               <p class="oe_view_accountant_create">结转损益
+               </p>
+            </field>
+        </record>
+
+
+        <record id="accountant_move_form" model="ir.ui.view">
+            <field name="name">accountant.move.form</field>
+            <field name="model">accountant.sun</field>
+            <field name="arch" type="xml">
+                <form string="结转损益" duplicate="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="ref"/>
+                                <field name="company_id"/>
+                            </group>
+                            <group>
+                                <field name="startDate" editable='0' />
+                                <field name="endDate"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="fast_period" widget="ac_fast_period" />
+                        </group>
+                        <footer>
+                        <button name="sun_entry" type="object" string="开始结转损益" class='btn-primary' />
+                    </footer>
+                    </sheet>
+                </form>
+            </field>
+         </record>
+        <record id="accountant_move_tree" model="ir.ui.view">
+            <field name="ref">摘要</field>
+            <field name="model">accountant.sun</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="ref"/>
+                </tree>
+            </field>
+        </record>
+
+        <menuitem id="accountant_menu_sun" name="结转损益" parent="main_accountant_menu" action="accountant_sun_action"/>
+
+    </data>
+</odoo>

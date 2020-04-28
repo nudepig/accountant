@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_accountant_stock_move">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+               <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <h2>
+                            <span t-field="o.name"/>
+                        </h2>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th><span>公司</span></th>
+                                    <th><span>产品分类</span></th>
+                                    <th><span>期初库存数量</span></th>
+                                    <th><span>期末库存数量</span></th>
+                                    <th><span>出库数量</span></th>
+                                    <th><span>库存周转率</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.line_ids" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.company_id"/></td>
+                                        <td><span t-field="line.category"/></td>
+                                        <td><span t-field="line.stock_s"/></td>
+                                        <td><span t-field="line.stock_e"/></td>
+                                        <td><span t-field="line.stock_cost"/></td>
+                                        <td><span t-field="line.stock_rate"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+              </t>
+            </t>
+        </t>
+    </template>
+    <template id="report_accountant_stock_brand">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+               <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <h2>
+                            <span t-field="o.name"/>
+                        </h2>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th><span>公司</span></th>
+                                    <th><span>品牌</span></th>
+                                    <th><span>期初库存数量</span></th>
+                                    <th><span>期末库存数量</span></th>
+                                    <th><span>出库数量</span></th>
+                                    <th><span>库存周转率</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.line_ids" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.company_id"/></td>
+                                        <td><span t-field="line.category"/></td>
+                                        <td><span t-field="line.stock_s"/></td>
+                                        <td><span t-field="line.stock_e"/></td>
+                                        <td><span t-field="line.stock_cost"/></td>
+                                        <td><span t-field="line.stock_rate"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+              </t>
+            </t>
+        </t>
+    </template>
+    <template id="report_accountant_stock_gross">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+               <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <h2>
+                            <span t-field="o.name"/>
+                        </h2>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th><span>公司</span></th>
+                                    <th><span>产品分类</span></th>
+                                    <th><span>收入</span></th>
+                                    <th><span>成本</span></th>
+                                    <th><span>毛利额</span></th>
+                                    <th><span>毛利率</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.line_ids" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.company_id"/></td>
+                                        <td><span t-field="line.category"/></td>
+                                        <td><span t-field="line.income"/></td>
+                                        <td><span t-field="line.cost"/></td>
+                                        <td><span t-field="line.gross_profit"/></td>
+                                        <td><span t-field="line.gross_rate"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+              </t>
+            </t>
+        </t>
+    </template>
+    <template id="report_accountant_stock_brand_gross">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+               <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <h2>
+                            <span t-field="o.name"/>
+                        </h2>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th><span>公司</span></th>
+                                    <th><span>品牌</span></th>
+                                    <th><span>收入</span></th>
+                                    <th><span>成本</span></th>
+                                    <th><span>毛利额</span></th>
+                                    <th><span>毛利率</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.line_ids" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.company_id"/></td>
+                                        <td><span t-field="line.category"/></td>
+                                        <td><span t-field="line.income"/></td>
+                                        <td><span t-field="line.cost"/></td>
+                                        <td><span t-field="line.gross_profit"/></td>
+                                        <td><span t-field="line.gross_rate"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+              </t>
+            </t>
+        </t>
+    </template>
+    <report
+        string="按分类库存周转率"
+        id="action_report_accountant_stock_move"
+        model="accountant.stock.move"
+        report_type="qweb-html"
+        name="accountant.report_accountant_stock_move"
+        file="accountant.report_accountant_stock_move"
+        print_report_name="'%s' %((object.name).replace('-',''))"
+    />
+    <report
+        string="按品牌库存周转率"
+        id="action_report_accountant_stock_brand"
+        model="accountant.stock.brand"
+        report_type="qweb-html"
+        name="accountant.report_accountant_stock_brand"
+        file="accountant.report_accountant_stock_brand"
+        print_report_name="'%s' %((object.name).replace('-',''))"
+    />
+    <report
+        string="按分类毛利率"
+        id="action_report_accountant_stock_gross"
+        model="accountant.stock.gross"
+        report_type="qweb-html"
+        name="accountant.report_accountant_stock_gross"
+        file="accountant.report_accountant_stock_gross"
+        print_report_name="'%s' %((object.name).replace('-',''))"
+    />
+    <report
+        string="按品牌毛利率"
+        id="action_report_accountant_stock_brand_gross"
+        model="accountant.stock.brand.gross"
+        report_type="qweb-html"
+        name="accountant.report_accountant_stock_brand_gross"
+        file="accountant.report_accountant_stock_brand_gross"
+        print_report_name="'%s' %((object.name).replace('-',''))"
+    />
+</odoo>
