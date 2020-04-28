@@ -1,5 +1,5 @@
 // 凭证借贷方金额
-odoo.define('accountcore.accountcoreListRenderer', function (require) {
+odoo.define('accountant.accountantListRenderer', function (require) {
     "use strict";
     var ListRenderer = require('web.ListRenderer');
 
@@ -34,7 +34,7 @@ odoo.define('accountcore.accountcoreListRenderer', function (require) {
                 break;
             case (amount - 0 == 0):
                 node.addClass('amount-zero');
-                // css定义在 server\addons\accountcore\static\css\accountcore.css
+                // css定义在 server\addons\accountant\static\css\accountant.css
                 break;
             case (amount - 0 < 0):
                 node.addClass('amount-negative');
@@ -55,11 +55,11 @@ odoo.define('accountcore.accountcoreListRenderer', function (require) {
     return ListRenderer;
 });
 //凭证的核算项目字段,自动继承摘要，借贷自动平衡等
-odoo.define('web.accountcoreExtend', ['web.basic_fields', 'web.relational_fields', 'accountcore.accountcoreVoucher', 'web.field_registry'], function (require) {
+odoo.define('web.accountantExtend', ['web.basic_fields', 'web.relational_fields', 'accountant.accountantVoucher', 'web.field_registry'], function (require) {
     "use strict";
     var relational_fields = require('web.relational_fields');
     var fieldMany2ManyTags = relational_fields.FieldMany2ManyTags;
-    var accountcoreVoucher = require('accountcore.accountcoreVoucher');
+    var accountantVoucher = require('accountant.accountantVoucher');
     var FieldChar = require('web.basic_fields').FieldChar;
     var tiger_accountItems_m2m = fieldMany2ManyTags.extend({
 
@@ -87,7 +87,7 @@ odoo.define('web.accountcoreExtend', ['web.basic_fields', 'web.relational_fields
                 }
                 this.choiceItemsModel.destroy();
             };
-            this.choiceItemsModel = new accountcoreVoucher.choiceItemsModel(this, this.name, this.record, {
+            this.choiceItemsModel = new accountantVoucher.choiceItemsModel(this, this.name, this.record, {
                 mode: 'edit',
                 noOpen: true,
                 viewType: this.viewType,
@@ -193,7 +193,7 @@ odoo.define('web.accountcoreExtend', ['web.basic_fields', 'web.relational_fields
     };
 });
 //凭证的核算项目字段选择
-odoo.define('accountcore.accountcoreVoucher', ['web.AbstractField', 'web.relational_fields', 'web.field_registry', 'web.core', 'web.field_utils'], function (require) {
+odoo.define('accountant.accountantVoucher', ['web.AbstractField', 'web.relational_fields', 'web.field_registry', 'web.core', 'web.field_utils'], function (require) {
     "use strict";
     var AbstractField = require('web.AbstractField');
     var relational_fields = require('web.relational_fields');
@@ -361,7 +361,7 @@ odoo.define('accountcore.accountcoreVoucher', ['web.AbstractField', 'web.relatio
     var choiceItemsModel = AbstractField.extend({
         //凭证中的选择核算项目
         supportedFieldTypes: ['many2many'],
-        template: 'accountcore_voucher_choice_items',
+        template: 'accountant_voucher_choice_items',
 
         custom_events: _.extend({}, AbstractField.prototype.custom_events, {
 
@@ -452,7 +452,7 @@ odoo.define('accountcore.accountcoreVoucher', ['web.AbstractField', 'web.relatio
          */
         _getItemTypes: function (accountId) {
             return this._rpc({
-                model: 'accountcore.account',
+                model: 'accountant.account',
                 method: 'get_itemClasses',
                 args: [accountId]
             });
@@ -502,7 +502,7 @@ odoo.define('accountcore.accountcoreVoucher', ['web.AbstractField', 'web.relatio
         _getEntryItems: function () {
             var entryId = this.record.data.items.res_ids;
             return this._rpc({
-                model: 'accountcore.item',
+                model: 'accountant.item',
                 method: 'getEntryItems',
                 args: [entryId]
             });
@@ -520,7 +520,7 @@ odoo.define('accountcore.accountcoreVoucher', ['web.AbstractField', 'web.relatio
     }
 });
 //给凭证列表视图添加按钮
-odoo.define('accountcore.accountcoreVoucheListButton', function (require) {
+odoo.define('accountant.accountantVoucheListButton', function (require) {
     "use strict";
     var ListView = require('web.ListView');
     var viewRegistry = require('web.view_registry');
@@ -563,12 +563,12 @@ odoo.define('accountcore.accountcoreVoucheListButton', function (require) {
     return voucherListView;
 });
 //启用期初列表视图
-odoo.define('accountcore.balanceListView', function (require) {
+odoo.define('accountant.balanceListView', function (require) {
     "use strict";
     var ListView = require('web.ListView');
     var viewRegistry = require('web.view_registry');
     var ListController = require('web.ListController');
-    var CheckBalance = require('accountcore.begin_balance_check');
+    var CheckBalance = require('accountant.begin_balance_check');
     var balanceListController = ListController.extend({
         renderButtons: function () {
             this._super.apply(this, arguments);
@@ -589,12 +589,12 @@ odoo.define('accountcore.balanceListView', function (require) {
     return balanceListView;
 });
 //启用期初平衡检查按钮
-odoo.define("accountcore.begin_balance_check", function (require) {
+odoo.define("accountant.begin_balance_check", function (require) {
     "use strict";
     var Widget = require('web.Widget');
     var framework = require('web.framework');
     var CheckBalance = Widget.extend({
-        template: 'accountcore.check_balance',
+        template: 'accountant.check_balance',
         events: {
             'click': '_do_check',
         },
@@ -603,7 +603,7 @@ odoo.define("accountcore.begin_balance_check", function (require) {
             this.do_action({
                 name: '启用期初平衡检查',
                 type: 'ir.actions.act_window',
-                res_model: 'accountcore.begin_balance_check',
+                res_model: 'accountant.begin_balance_check',
                 views: [
                     [false, 'form']
                 ],
@@ -612,7 +612,7 @@ odoo.define("accountcore.begin_balance_check", function (require) {
             // framework.blockUI();
             // alert('开始试算平衡');
             // this._rpc({
-            //     model: 'accountcore.account',
+            //     model: 'accountant.account',
             //     method: 'get_itemClasses',
             //     args: [176],
             // }).then(function (items) {
@@ -636,14 +636,14 @@ odoo.define("accountcore.begin_balance_check", function (require) {
     return CheckBalance;
 });
 // 快速选取期间
-odoo.define("accountcore.fast_period", ['web.AbstractField', 'web.field_registry', 'web.time', 'accountcore.period_tool'], function (require) {
+odoo.define("accountant.fast_period", ['web.AbstractField', 'web.field_registry', 'web.time', 'accountant.period_tool'], function (require) {
     "use strict";
     var AbstractField = require('web.AbstractField');
     var time = require('web.time');
-    var Perod_tool = require('accountcore.period_tool');
+    var Perod_tool = require('accountant.period_tool');
     var ac_fast_period = AbstractField.extend({
         supportedFieldTypes: ['date'],
-        template: 'accountcore.fast_period',
+        template: 'accountant.fast_period',
         attributes: {
             style: "background-color:white;border: 1px solid grey;"
         },
@@ -695,7 +695,7 @@ odoo.define("accountcore.fast_period", ['web.AbstractField', 'web.field_registry
 
 });
 //期间处理工具
-odoo.define('accountcore.period_tool', function (require) {
+odoo.define('accountant.period_tool', function (require) {
     var Class = require('web.Class');
     //日期范围
     var PeriodScop = Class.extend({
@@ -776,9 +776,12 @@ odoo.define('accountcore.period_tool', function (require) {
             if (1 <= month && month <= 3) {
                 year = this.year - 1
             } else if (4 <= month && month < 6) {
+                firstMonth = 1;
+                endMonth = 3;
+            } else if (7 <= month && month <= 9) {
                 firstMonth = 4;
                 endMonth = 6;
-            } else if (7 <= month && month <= 9) {
+             } else if (10 <= month && month <= 12) {
                 firstMonth = 7;
                 endMonth = 9;
             };
@@ -841,7 +844,7 @@ odoo.define('accountcore.period_tool', function (require) {
     };
 });
 // 自定义按钮
-odoo.define('accountcore.btn', ['web.AbstractField', 'web.field_registry'], function (require) {
+odoo.define('accountant.btn', ['web.AbstractField', 'web.field_registry'], function (require) {
     "use strict";
     var AbstractField = require('web.AbstractField');
     // 点击按钮触发后台@api.onchage('本字段')装饰的方法
@@ -877,10 +880,10 @@ odoo.define('accountcore.btn', ['web.AbstractField', 'web.field_registry'], func
     };
 });
 // 报表设计器相关
-odoo.define('accountcore.myjexcel', ['web.AbstractField', 'web.field_registry', 'accountcore.jexcel', 'accountcore.jsuites', 'web.core', 'web.AbstractAction', 'web.session'], function (require) {
+odoo.define('accountant.myjexcel', ['web.AbstractField', 'web.field_registry', 'accountant.jexcel', 'accountant.jsuites', 'web.core', 'web.AbstractAction', 'web.session'], function (require) {
     "use strict";
     var AbstractField = require('web.AbstractField');
-    var jexcel = require('accountcore.jexcel');
+    var jexcel = require('accountant.jexcel');
     var core = require('web.core');
     var AbstractAction = require('web.AbstractAction');
     // var Session = require('web.session');
@@ -1508,7 +1511,7 @@ odoo.define('accountcore.myjexcel', ['web.AbstractField', 'web.field_registry', 
                     this.do_action({
                         name: '报表科目取数公式设置向导',
                         type: 'ir.actions.act_window',
-                        res_model: 'accountcore.reportmodel_formula',
+                        res_model: 'accountant.reportmodel_formula',
                         context: context,
                         views: [
                             [false, 'form']
@@ -1521,7 +1524,7 @@ odoo.define('accountcore.myjexcel', ['web.AbstractField', 'web.field_registry', 
             this.do_action({
                 name: '报表科目取数公式设置向导',
                 type: 'ir.actions.act_window',
-                res_model: 'accountcore.reportmodel_formula',
+                res_model: 'accountant.reportmodel_formula',
                 views: [
                     [false, 'form']
                 ],
