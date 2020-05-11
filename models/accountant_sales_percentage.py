@@ -15,6 +15,7 @@ class AccountantSalesPercentage(models.Model):
     company_id = fields.Many2one('res.company', string='公司',
                                  store=True, index=True, readonly=False, required=True)
     partner_id = fields.Char(string='合作伙伴', store=True, readonly=True, copy=False)
+    partner_id_name = fields.Char(string='客户名称', store=True, copy=False)
 
     state = fields.Selection([
         ('draft', '草稿'),
@@ -51,7 +52,7 @@ class AccountantSalesPercentage(models.Model):
                                           currency_field='company_currency_id', readonly=True)
     balance = fields.Monetary(string="余额", store=True,
                               currency_field='company_currency_id', readonly=True)
-    product_id_name = fields.Char(string='客户名称', store=True, copy=False)
+
     total = fields.Float(string='合计', digits=(10, 2))
     stock_picking = fields.Char(string='送货单号', store=True, copy=False)
     discount = fields.Float(string='折扣', digits=(10, 2))
@@ -71,7 +72,7 @@ class AccountantSalesPercentage(models.Model):
 
         for invoice_id in invoice_list:
             partner_id = self.env['account.invoice'].search([('id', '=', invoice_id)]).partner_id.id
-            product_id_name = self.env['account.invoice'].search([('id', '=', invoice_id)]).partner_id.name
+            partner_id_name = self.env['account.invoice'].search([('id', '=', invoice_id)]).partner_id.name
             state = self.env['account.invoice'].search([('id', '=', invoice_id)]).state
             number = self.env['account.invoice'].search([('id', '=', invoice_id)]).number
             date = self.env['account.invoice'].search([('id', '=', invoice_id)]).date_invoice
@@ -98,7 +99,7 @@ class AccountantSalesPercentage(models.Model):
                                                                           ('account_id', '=', 5)]).mapped('balance_cash_basis'))
             vals = {
                 'partner_id': partner_id,
-                'product_id_name': product_id_name,
+                'partner_id_name': partner_id_name,
                 'company_id': self.company_id.id,
                 'state': state,
                 'number': number,
@@ -117,16 +118,20 @@ class AccountantSalesPercentage(models.Model):
                 'endDate': self.endDate,
             }
             self.create(vals)
-            self._account_invoice_line(invoice_id, state, number, date, user_id_name, team_id, origin, partner_id, product_id_name)
+            self._account_invoice_line(invoice_id, state, number, date, user_id_name, team_id, origin, partner_id, partner_id_name)
 
-    def _account_invoice_line(self, invoice_id, state, number, date, user_id_name, team_id, origin, partner_id, product_id_name):
+    def _account_invoice_line(self, invoice_id, state, number, date, user_id_name, team_id, origin, partner_id, partner_id_name):
         product_id_list = self.env['account.invoice.line'].search([('invoice_id', '=', invoice_id)]).mapped('product_id')
         for product_id in product_id_list:
             product_id = product_id.id
+
             brand_product = self.env['product.product'].search([('id', '=', product_id)]).mapped('product_tmpl_id').id
             brand_tmpl = self.env['product.template'].search([('id', '=', brand_product)]).mapped('categ_id').id
             brand_categ = self.env['product.category'].search([('id', '=', brand_tmpl)]).mapped('parent_id').id
             brand = self.env['product.category'].search([('id', '=', brand_categ)]).name
+
+            product_name = self.env['product.template'].search([('id', '=', brand_product)]).name
+
             uom_id = self.env['account.invoice.line'].search([('invoice_id', '=', invoice_id),
                                                               ('product_id', '=', product_id)], limit=1).uom_id.name
             quantity = sum(self.env['account.invoice.line'].search([('invoice_id', '=', invoice_id),
@@ -140,7 +145,7 @@ class AccountantSalesPercentage(models.Model):
             total = quantity * price_unit
             values = {
                 'partner_id': partner_id,
-                'product_id_name': product_id_name,
+                'partner_id_name': partner_id_name,
                 'company_id': self.company_id.id,
                 'state': state,
                 'number': number,
@@ -149,7 +154,7 @@ class AccountantSalesPercentage(models.Model):
                 'user_id': self.user_id.id,
                 'team_id': team_id,
                 'origin': origin,
-                'product_id': product_id_name,
+                'product_id': product_name,
                 'brand': brand,
                 'uom_id': uom_id,
                 'quantity': quantity,
