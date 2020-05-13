@@ -14,5 +14,6 @@ access_accountant_stock_gross_line,accountant.stock.gross.line,model_accountant_
 access_accountant_stock_brand_gross,accountant.stock.brand.gross,model_accountant_stock_brand_gross,,1,1,1,1
 access_accountant_stock_brand_gross_line,accountant.stock.brand.gross.line,model_accountant_stock_brand_gross_line,,1,1,1,1
 access_accountant_customer_gross,accountant.customer.gross,model_accountant_customer_gross,,1,1,1,1
-access_accountant_invoice_statement,accountant.invoice.statement,model_accountant_invoice_statement,,1,1,1,1
+access_accountant_statement,accountant.statement,model_accountant_statement,,1,1,1,1
+access_accountant_statement_line,accountant.statement.line,model_accountant_statement_line,,1,1,1,1
 access_accountant_sales_percentage,accountant.sales.percentage,model_accountant_sales_percentage,,1,1,1,1

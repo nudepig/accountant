@@ -636,6 +636,34 @@ odoo.define("accountant.begin_balance_check", function (require) {
     return CheckBalance;
 });
 // 快速选取期间
+odoo.define("accountant.el_period", ['web.AbstractField', 'web.field_registry', 'web.time', 'accountant.period_tool'], function (require) {
+    "use strict";
+    var AbstractField = require('web.AbstractField');
+    var ac_el_period = AbstractField.extend({
+        supportedFieldTypes: ['date'],
+        template: 'accountant.el_period',
+        attributes: {
+            style: "background-color:white;border: 1px solid grey;"
+        },
+    });
+    var fieldRegistry = require('web.field_registry');
+    fieldRegistry.add('ac_el_period', ac_el_period);
+    return {
+        ac_el_period: ac_el_period,
+    };
+});
+
+
+
+
+
+
+
+
+
+
+
+
 odoo.define("accountant.fast_period", ['web.AbstractField', 'web.field_registry', 'web.time', 'accountant.period_tool'], function (require) {
     "use strict";
     var AbstractField = require('web.AbstractField');

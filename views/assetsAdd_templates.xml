@@ -39,5 +39,10 @@
                 <script type="text/javascript" src="/accountant/static/js/accountant.js"></script>
             </xpath>
         </template>
+        <template id="accountant_assets_js" inherit_id="web.assets_backend" name="accountant jsassets">
+            <xpath expr="script[last()]" position="after">
+                <script type="text/javascript" src="https://unpkg.com/element-ui/lib/index.js"></script>
+            </xpath>
+        </template>
     </data>
 </odoo>
