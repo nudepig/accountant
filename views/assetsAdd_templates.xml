@@ -12,36 +12,10 @@
                 <link rel='stylesheet' type='text/css' href="/accountant/static/css/accountant.css" />
             </xpath>
         </template>
-        <!-- jexcel插件-开始-->
-        <template id="accountant_jsuites_js" inherit_id="web.assets_backend" name="accountant jsuites">
-            <xpath expr="script[last()]" position="after">
-                <script type="text/javascript" src="/accountant/static/js/jsuites.js"></script>
-            </xpath>
-        </template>
-        <template id="accountant_jexcel_js" inherit_id="web.assets_backend" name="accountant jexcel">
-            <xpath expr="script[last()]" position="after">
-                <script type="text/javascript" src="/accountant/static/js/jexcel.js"></script>
-            </xpath>
-        </template>
-        <template id="accountant_jexcel_css" inherit_id="web.assets_backend" name="accountant jexcel css">
-            <xpath expr="link[last()]" position="after">
-                <link rel='stylesheet' type='text/css' href="/accountant/static/css/jexcel.css" />
-            </xpath>
-        </template>
-        <template id="accountant_jsuites_css" inherit_id="web.assets_backend" name="accountant jsuites css">
-            <xpath expr="link[last()]" position="after">
-                <link rel='stylesheet' type='text/css' href="/accountant/static/css/jsuites.css" />
-            </xpath>
-        </template>
-        <!-- excel插件-结束-->
+
         <template id="accountant_assets_js" inherit_id="web.assets_backend" name="accountant jsassets">
             <xpath expr="script[last()]" position="after">
                 <script type="text/javascript" src="/accountant/static/js/accountant.js"></script>
-            </xpath>
-        </template>
-        <template id="accountant_assets_js" inherit_id="web.assets_backend" name="accountant jsassets">
-            <xpath expr="script[last()]" position="after">
-                <script type="text/javascript" src="https://unpkg.com/element-ui/lib/index.js"></script>
             </xpath>
         </template>
     </data>

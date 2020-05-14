@@ -32,7 +32,7 @@
                             </group>
                         </group>
                         <group>
-                            <field name="fast_period" widget="ac_fast_period" />
+                            <field name="fast_period" widget="ac_fast_picker" />
                         </group>
                         <footer>
                             <button name="do_profit_team" type="object" string="开始计算利润表" class='btn-primary' />

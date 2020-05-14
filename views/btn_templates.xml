@@ -20,8 +20,8 @@
     <t t-name="accountant.check_balance">
         <button class="btn btn-secondary ac_balance_check" type="button">平衡检查</button>
     </t>
-    <!-- 快速选取期间 \addons\accountcore\static\js\accountcore.js\server\addons\accountcore\static\js\accountcore.js-->
-    <t t-name="accountant.fast_period">
+    <!-- 快速选取期间 \addons\accountcore\static\js\accountant.js-->
+    <t t-name="accountant.fast_picker">
         <center>
             <button type="button" class="btn btn-sm" >上月</button>
             <button type="button" class="btn btn-sm" style="margin-left:1.5em">本月</button>
@@ -32,20 +32,6 @@
             <button type="button" class="btn btn-sm" style="margin-left:1.5em">去年上半年</button>
             <button type="button" class="btn btn-sm" style="margin-left:1.5em">去年下半年</button>
             <button type="button" class="btn btn-sm" style="margin-left:1.5em">今年上半年</button>
-        </center>
-    </t>
-
-    <t t-name="accountant.el_period">
-        <center>
-           <div class="block">
-                    <el-date-picker
-                      v-model="value1"
-                      type="daterange"
-                      range-separator="至"
-                      start-placeholder="开始日期"
-                      end-placeholder="结束日期">
-                </el-date-picker>
-            </div>
         </center>
     </t>
 </templates>
