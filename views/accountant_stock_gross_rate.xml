@@ -11,7 +11,7 @@
         </field>
     </record>
 
-    <record id="accountant_gross_view_tree" model="ir.ui.view">
+    <record id="accountant_gross_rate_tree" model="ir.ui.view">
             <field name="name">按分类毛利率</field>
             <field name="model">accountant.stock.gross.line</field>
             <field name="arch" type="xml">
@@ -44,7 +44,7 @@
                             </group>
                         </group>
                         <group>
-                            <field name="fast_period" widget="ac_fast_picker" />
+                            <field name="fast_period" widget="ac_fast_period" />
                         </group>
                         <footer>
                             <button name="accountant_income_rate" type="object" string="开始计算毛利率" class='btn-primary' />
@@ -64,6 +64,9 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="startDate"/>
+                    <field name="endDate"/>
                 </tree>
             </field>
         </record>

@@ -87,7 +87,7 @@ import datetime
 #         return lines  #
 # 上述是从account.move.line中按照分类查询库存周转率
 
-
+#按分类库存周转率
 class AccountantStockMove(models.Model):
     _description = 'this is stock move'
     _name = 'accountant.stock.move'
@@ -164,8 +164,8 @@ class AccountantStockMove(models.Model):
             stock_rate = (start + end) * 0.5
             if stock_rate:
                 stock_rate = (stock_cost/stock_rate) * 100
-                stock_rate = '%.2f' % stock_rate
-                stock_rate = str(stock_rate) + '%'
+                # stock_rate = '%.2f' % stock_rate
+                # stock_rate = str(stock_rate) + '%'
         else:
             stock_rate = None
         if stock_rate:
@@ -190,12 +190,14 @@ class AccountantStockMove(models.Model):
             product_category = self.env['product.category'].search([('id', '=', product)]).complete_name
             self._accountant_stock_category(product_template, product_category)
 
-
+#按分类库存周转率明细
 class AccountantStockMoveLine(models.Model):
     _description = 'this is stock move line'
     _name = 'accountant.stock.move.line'
     move_id = fields.Many2one('accountant.stock.move', string='库存周转', ondelete="Cascade",
                               help="The move of this entry line.", index=True, auto_join=True)
+    company_currency_id = fields.Many2one('res.currency', related='company_id.currency_id',
+                                          string="Company Currency", readonly=True, store=True)
     company_id = fields.Many2one('res.company', string='公司',
                                  store=True, index=True, readonly=False)
     category = fields.Char(string="产品分类", store=True, readonly=True)
@@ -205,7 +207,7 @@ class AccountantStockMoveLine(models.Model):
                            store=True, digits=(10, 2), readonly=True)
     stock_cost = fields.Float(default=0.0, string="出库数量",
                               store=True, digits=(10, 2), readonly=True)
-    stock_rate = fields.Char(default=None, string="库存周转率", readonly=True)
+    stock_rate = fields.Monetary(default=0.0, string="库存周转率(%)", currency_field='company_currency_id', readonly=True, store=True)
 
     @api.model_create_multi
     def create(self, values):
@@ -213,7 +215,7 @@ class AccountantStockMoveLine(models.Model):
         return lines
 # 上述是从stock.move.line中按照分类查询库存周转率
 
-
+## 按分类库存毛利率
 class AccountantStockGross(models.Model):
     _description = 'this is stock gross'
     _name = 'accountant.stock.gross'
@@ -256,7 +258,7 @@ class AccountantStockGross(models.Model):
         gross_profit = income - cost
         if gross_profit and income:
             gross_rate = (gross_profit/income) * 100
-            gross_rate = '%.2f' % gross_rate + "%"
+            # gross_rate = '%.2f' % gross_rate
         else:
             gross_rate = None
         if gross_rate:
@@ -271,7 +273,7 @@ class AccountantStockGross(models.Model):
             }
             self.env['accountant.stock.gross.line'].create(values)
 
-
+## 按分类库存毛利率明细
 class AccountantStockGrossLine(models.Model):
     _description = 'this is stock gross line'
     _name = 'accountant.stock.gross.line'
@@ -288,7 +290,7 @@ class AccountantStockGrossLine(models.Model):
                            store=True, currency_field='company_currency_id', readonly=True)
     gross_profit = fields.Monetary(default=0.0, string="毛利额",
                                    store=True, currency_field='company_currency_id', readonly=True)
-    gross_rate = fields.Char(default=None, string="毛利率", readonly=True)
+    gross_rate = fields.Monetary(default=0.0, string="毛利率(%)", currency_field='company_currency_id', readonly=True, store=True)
 
     @api.model_create_multi
     def create(self, values):
@@ -296,7 +298,7 @@ class AccountantStockGrossLine(models.Model):
         return lines
 # 上述是从stock.gross.line中按照分类查询毛利率
 
-
+# 按品牌库存周转率
 class AccountantStockBrand(models.Model):
     _description = 'this is stock brand'
     _name = 'accountant.stock.brand'
@@ -359,8 +361,8 @@ class AccountantStockBrand(models.Model):
             stock_rate = (start + end) * 0.5
             if stock_rate:
                 stock_rate = (stock_cost/stock_rate) * 100
-                stock_rate = '%.2f' % stock_rate
-                stock_rate = str(stock_rate) + '%'
+                # stock_rate = '%.2f' % stock_rate
+                # stock_rate = str(stock_rate) + '%'
         else:
             stock_rate = None
         if stock_rate:
@@ -388,12 +390,14 @@ class AccountantStockBrand(models.Model):
             product_category = self.env['product.category'].search([('id', '=', brand)]).name
             self._accountant_stock_category(product_c, product_category)
 
-
+# 按品牌库存周转率明细
 class AccountantStockBrandLine(models.Model):
     _description = 'this is stock move brand'
     _name = 'accountant.stock.brand.line'
     move_id = fields.Many2one('accountant.stock.brand', string='库存周转', ondelete="Cascade",
                               help="The move of this entry line.", index=True, auto_join=True)
+    company_currency_id = fields.Many2one('res.currency', related='company_id.currency_id',
+                                          string="Company Currency", readonly=True, store=True)
     company_id = fields.Many2one('res.company', string='公司',
                                  store=True, index=True, readonly=False)
     category = fields.Char(string="品牌", store=True, readonly=True)
@@ -403,14 +407,15 @@ class AccountantStockBrandLine(models.Model):
                            store=True, digits=(10, 2), readonly=True)
     stock_cost = fields.Float(default=0.0, string="出库数量",
                               store=True, digits=(10, 2), readonly=True)
-    stock_rate = fields.Char(default=None, string="库存周转率", readonly=True)
+    stock_rate = fields.Monetary(default=0.0, string="库存周转率(%)",
+                                   store=True, currency_field='company_currency_id', readonly=True)
 
     @api.model_create_multi
     def create(self, values):
         lines = super(AccountantStockBrandLine, self).create(values)
         return lines
 
-
+#按品牌毛利率
 class AccountantStockBrandGross(models.Model):
     _description = 'this is stock brand gross'
     _name = 'accountant.stock.brand.gross'
@@ -422,7 +427,7 @@ class AccountantStockBrandGross(models.Model):
                                           string="Company Currency", readonly=True, store=True)
     company_id = fields.Many2one('res.company', string='公司',
                                  store=True, index=True, readonly=False, required=True)
-    line_ids = fields.One2many('accountant.stock.brand.gross.line', 'move_id', string='库存周转率',
+    line_ids = fields.One2many('accountant.stock.brand.gross.line', 'move_id', string='库存毛利率',
                                copy=True, readonly=True, ondelete="Cascade")
 
     def _accountant_stock_category(self, product_template, product_category):
@@ -444,7 +449,7 @@ class AccountantStockBrandGross(models.Model):
         gross_profit = income - cost
         if gross_profit and income:
             gross_rate = (gross_profit / income) * 100
-            gross_rate = '%.2f' % gross_rate + "%"
+            # gross_rate = '%.2f' % gross_rate + "%"
         else:
             gross_rate = None
         if gross_rate:
@@ -472,7 +477,7 @@ class AccountantStockBrandGross(models.Model):
                 product_category = self.env['product.category'].search([('id', '=', brand)]).name
                 self._accountant_stock_category(product_template, product_category)
 
-
+#按品牌毛利率明细
 class AccountantStockBrandGrossLine(models.Model):
     _description = 'this is stock move brand gross'
     _name = 'accountant.stock.brand.gross.line'
@@ -489,7 +494,8 @@ class AccountantStockBrandGrossLine(models.Model):
                            store=True, currency_field='company_currency_id', readonly=True)
     gross_profit = fields.Monetary(default=0.0, string="毛利额",
                                    store=True, currency_field='company_currency_id', readonly=True)
-    gross_rate = fields.Char(default=None, string="毛利率", readonly=True)
+    gross_rate = fields.Monetary(default=0.0, string="毛利率(%)",
+                                   store=True, currency_field='company_currency_id', readonly=True)
 
     @api.model_create_multi
     def create(self, values):

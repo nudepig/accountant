@@ -282,10 +282,13 @@
 <!--自定义树状视图-->
         <record id="assets_view_tree" model="ir.ui.view">
             <field name="name">报表</field>
-            <field name="model">accountant.profit</field>
+            <field name="model">accountant.balance</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="startDate"/>
+                    <field name="endDate"/>
                 </tree>
             </field>
         </record>

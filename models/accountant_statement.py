@@ -3,6 +3,7 @@
 from odoo import models, fields, api
 
 
+
 class AccountantCustomerGross(models.Model):
     _description = 'this is stock brand gross'
     _name = 'accountant.customer.gross'
@@ -14,55 +15,42 @@ class AccountantCustomerGross(models.Model):
                                           string="Company Currency", readonly=True, store=True)
     company_id = fields.Many2one('res.company', string='公司',
                                  store=True, index=True, readonly=False, required=True)
-    # line_ids = fields.One2many('accountant.customer.gross.line', 'move_id', string='库存周转率',
-    #                            copy=True, readonly=True, ondelete="Cascade")
-    # partner_id = fields.Many2one('res.partner', string='客户', change_default=True, readonly=False,
-    #                              track_visibility='always', ondelete='restrict', store=True, required=True)
+    line_ids = fields.One2many('accountant.customer.gross.line', 'move_id', string='客户毛利率',
+                               copy=True, readonly=True, ondelete="Cascade")
 
-    def _accountant_stock_category(self, partner_id, partner_id_name):
-        start_s = self.startDate
-        start_e = self.endDate
-        income = sum(self.env['account.move.line'].search([('company_id', '=', self.company_id.id),
-                                                           ('date', '>=', start_s),
-                                                           ('date', '<=', start_e),
-                                                           ('partner_id', '=', partner_id),
-                                                           ('account_id', '=', 62)]).mapped('balance'))
-        income = income * -1
-
-        cost = sum(self.env['account.move.line'].search([('company_id', '=', self.company_id.id),
-                                                         ('date', '>=', start_s),
-                                                         ('date', '<=', start_e),
-                                                         ('partner_id', '=', partner_id),
-                                                         ('account_id', '=', 67)]).mapped('balance'))
-        gross_profit = income - cost
-        if gross_profit and income:
-            gross_rate = gross_profit / income
-            # gross_rate = '%.2f' % gross_rate + "%"
-        else:
-            gross_rate = None
-        if gross_rate:
-            values = {
-                'income': income,
-                'cost': cost,
-                'gross_profit': gross_profit,
-                'gross_rate': gross_rate,
-                'company_id': self.company_id.id,
-                'startDate': start_s,
-                'endDate': start_e,
-                'name': self.name,
-                'partner_id_name': partner_id_name
-            }
-            self.create(values)
 
     def customer_gross_open_table(self):
         if self.startDate > self.endDate:
             raise exceptions.ValidationError('你选择的开始日期不能大于结束日期')
-        partner = self.env['res.partner'].search([]).mapped('id')
-        for partner_id in partner:
-            partner_id_name = self.env['res.partner'].search([('id', '=', partner_id)]).name
-            self._accountant_stock_category(partner_id, partner_id_name)
+        name = self.name
+        startDate = self.startDate
+        endDate = self.endDate
+        company_id = self.company_id.id
+        move_id = self.id
 
+        # vals = {
+        #     'name': name,
+        #     'startDate': startDate,
+        #     'endDate' : endDate,
+        #     'company_id' : company_id,
+        # }
+        # self.create(vals)
+        self.env['accountant.customer.gross.line'].accountant_stock_category(name, startDate, endDate, company_id, move_id)
+
+    # @api.model_create_multi
+    # def create(self, values):
+    #     return super(AccountantCustomerGross, self).create(values)
+
+
+
+class AccountantCustomerGrossLine(models.Model):
+    _description = 'this is stock brand gross line'
+    _name = 'accountant.customer.gross.line'
     partner_id_name = fields.Char(string="合作伙伴名称", store=True, readonly=True)
+    company_currency_id = fields.Many2one('res.currency', related='company_id.currency_id',
+                                          string="Company Currency", readonly=True, store=True)
+    company_id = fields.Many2one('res.company', string='公司',
+                                 store=True, index=True, readonly=False, required=True)
     income = fields.Monetary(default=0.0, string="收入",
                              store=True, currency_field='company_currency_id', readonly=True)
     cost = fields.Monetary(default=0.0, string="成本",
@@ -70,18 +58,52 @@ class AccountantCustomerGross(models.Model):
     gross_profit = fields.Monetary(default=0.0, string="毛利额",
                                    store=True, currency_field='company_currency_id', readonly=True)
     gross_rate = fields.Float(digits=(10, 2), string="毛利率", readonly=True)
+    move_id = fields.Many2one('accountant.customer.gross', string='库存周转', ondelete="Cascade",
+                              help="The move of this entry line.", index=True, auto_join=True)
+
+    def accountant_stock_category(self, name, startDate, endDate, company_id, move_id):
+        partner = self.env['res.partner'].search([]).mapped('id')
+        for partner_id in partner:
+            partner_id_name = self.env['res.partner'].search([('id', '=', partner_id)]).name
+            income = sum(self.env['account.move.line'].search([('company_id', '=', company_id),
+                                                               ('date', '>=', startDate),
+                                                               ('date', '<=', endDate),
+                                                               ('partner_id', '=', partner_id),
+                                                               ('account_id', '=', 62)]).mapped('balance'))
+            income = income * -1
+
+            cost = sum(self.env['account.move.line'].search([('company_id', '=', company_id),
+                                                             ('date', '>=', startDate),
+                                                             ('date', '<=', endDate),
+                                                             ('partner_id', '=', partner_id),
+                                                             ('account_id', '=', 67)]).mapped('balance'))
+            gross_profit = income - cost
+            if gross_profit and income:
+                gross_rate = gross_profit / income
+                # gross_rate = '%.2f' % gross_rate + "%"
+            else:
+                gross_rate = None
+            if gross_rate:
+                values = {
+                    'move_id': move_id,
+                    'name': name,
+                    'income': income,
+                    'cost': cost,
+                    'gross_profit': gross_profit,
+                    'gross_rate': gross_rate,
+                    'company_id': company_id,
+                    'startDate': startDate,
+                    'endDate': endDate,
+                    'partner_id_name': partner_id_name
+                }
+                self.create(values)
 
     @api.model_create_multi
     def create(self, values):
-        lines = super(AccountantCustomerGross, self).create(values)
-        return lines
+        return super(AccountantCustomerGrossLine, self).create(values)
 
-    def remove_data(self):
-        try:
-            sql = "DELETE FROM accountant_customer_gross"
-            self.env.cr.execute(sql)
-        except Exception:
-            pass
+
+
 
 
 class AccountantStatement(models.Model):
