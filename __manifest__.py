@@ -24,6 +24,7 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'views/accountant_overview.xml',
         'views/accountant_profit.xml',
         'views/accountant_profit_team.xml',
         'views/accountant_profit_sales.xml',

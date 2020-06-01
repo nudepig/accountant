@@ -119,7 +119,7 @@ class AccountantSun(models.Model):
         if profit != 0:
             profit_this_year = self._get_balance_sun(profit, 56)
             sun_line_create.append(profit_this_year)
-        self.env(user=2)['account.move.line'].create(sun_line_create)
+        self.sudo().env['account.move.line'].create(sun_line_create)
 
 
 

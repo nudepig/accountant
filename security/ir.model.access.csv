@@ -19,3 +19,5 @@ access_accountant_statement,accountant.statement,model_accountant_statement,,1,1
 access_accountant_statement_line,accountant.statement.line,model_accountant_statement_line,,1,1,1,1
 access_accountant_sales_percentage,accountant.sales.percentage,model_accountant_sales_percentage,,1,1,1,1
 access_accountant_sales_percentage_line,accountant.sales.percentage.line,model_accountant_sales_percentage_line,,1,1,1,1
+access_accountant_overview,accountant.overview,model_accountant_overview,,1,1,1,1
+

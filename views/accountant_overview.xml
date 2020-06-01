@@ -1,0 +1,65 @@
+<odoo>
+    <record id="accountant_overview_kanban_view" model="ir.ui.view">
+        <field name="name">accountant.journal.dashboard.kanban</field>
+        <field name="model">accountant.overview</field>
+        <field name="arch" type="xml">
+            <kanban create="false">
+                <field name="name"/>
+                <field name="color"/>
+                <field name="kanban_dashboard"/>
+                <templates>
+                    <t t-name="kanban-box">
+
+                        <t t-value="JSON.parse(record.kanban_dashboard.raw_value)" t-set="dashboard"/>
+                        <div class="container o_kanban_card_content">
+                            <div class="row">
+                                <div class="col-4 text-left">
+                                    <div><t t-esc="dashboard.title"/></div>
+                                    <div>销售订单总额：<t t-esc="dashboard.sum_sale_order"/></div>
+                                    <div>销售订单数：<t t-esc="dashboard.sale_count"/></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 text-left">
+                                    .col-xs-6 .col-md-4
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </t>
+<!--                    <t t-name="SaleOrder">-->
+<!--                        <div class="text-center">-->
+<!--                            <span><t t-esc="dashboard.title"/></span>-->
+<!--                        </div>-->
+<!--                        <div class="text-center">-->
+
+<!--                            <span>订单金额合计：<t t-esc="dashboard.sum_sale_order"/></span>-->
+
+<!--                        </div>-->
+<!--                        <div class="text-center">-->
+
+<!--                             <span> 订单数： <t t-esc="dashboard.sale_count"/></span>-->
+<!--                        </div>-->
+<!--                    </t>-->
+
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="open_accountant_overview_kanban" model="ir.actions.act_window">
+        <field name="name">数据概览</field>
+        <field name="res_model">accountant.overview</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="view_id" ref="accountant_overview_kanban_view"/>
+        <field name="help" type="html">
+            <p>
+                数据展示<br/>
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="main_accountant_overview" name="概览" action="open_accountant_overview_kanban" parent="main_accountant_menu" sequence="1"/>
+</odoo>
