@@ -49,7 +49,7 @@
     ],
     # only loaded in demonstration mode
     'demo': [
-        'demo/demo.xml',
+        'demo/accountant_overview.xml',
     ],
     'css': [
         'static/css/accountant.css',

@@ -18,12 +18,10 @@ class AccountantOverview(models.Model):
 
     currency_id = fields.Many2one('res.currency', help='The currency used to enter statement', string="Currency",
                                   oldname='currency')
-    company_id = fields.Many2one('res.company', string='Company', required=True, index=True,
-                                 default=lambda self: self.env.user.company_id,
-                                 help="Company related to this")
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.user.company_id)
     name = fields.Char(string='名称')
     kanban_dashboard = fields.Text(compute='_kanban_dashboard')
-    color = fields.Integer("Color Index", default=0)
+
 
 
     @api.one

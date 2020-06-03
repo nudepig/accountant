@@ -5,43 +5,30 @@
         <field name="arch" type="xml">
             <kanban create="false">
                 <field name="name"/>
-                <field name="color"/>
                 <field name="kanban_dashboard"/>
                 <templates>
                     <t t-name="kanban-box">
 
                         <t t-value="JSON.parse(record.kanban_dashboard.raw_value)" t-set="dashboard"/>
+                        <t t-value="record.name.raw_value)" t-set="name_type"/>
                         <div class="container o_kanban_card_content">
                             <div class="row">
                                 <div class="col-4 text-left">
-                                    <div><t t-esc="dashboard.title"/></div>
-                                    <div>销售订单总额：<t t-esc="dashboard.sum_sale_order"/></div>
-                                    <div>销售订单数：<t t-esc="dashboard.sale_count"/></div>
+                                    <t t-if="(name_type == 'sale')" t-call="SaleOrder"/>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-4 text-left">
-                                    .col-xs-6 .col-md-4
-                                </div>
-                            </div>
+
+
                         </div>
 
 
                     </t>
-<!--                    <t t-name="SaleOrder">-->
-<!--                        <div class="text-center">-->
-<!--                            <span><t t-esc="dashboard.title"/></span>-->
-<!--                        </div>-->
-<!--                        <div class="text-center">-->
+                    <t t-name="SaleOrder">
+                        <div><t t-esc="dashboard.title"/></div>
+                        <div>销售订单总额：<t t-esc="dashboard.sum_sale_order"/></div>
+                        <div>销售订单数：<t t-esc="dashboard.sale_count"/></div>
+                    </t>
 
-<!--                            <span>订单金额合计：<t t-esc="dashboard.sum_sale_order"/></span>-->
-
-<!--                        </div>-->
-<!--                        <div class="text-center">-->
-
-<!--                             <span> 订单数： <t t-esc="dashboard.sale_count"/></span>-->
-<!--                        </div>-->
-<!--                    </t>-->
 
                 </templates>
             </kanban>
@@ -60,6 +47,6 @@
             </p>
         </field>
     </record>
-
+    <menuitem id="main_accountant_menu" name="会计"/>
     <menuitem id="main_accountant_overview" name="概览" action="open_accountant_overview_kanban" parent="main_accountant_menu" sequence="1"/>
 </odoo>

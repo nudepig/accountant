@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+           <record id="demo_quotation" model="accountant.overview">
+             <field name="name">quotation</field>
+
+           </record>
+
+           <record id="object_sale" model="accountant.overview">
+             <field name="name">sale</field>
+
+           </record>
+
+           <record id="object_invoice" model="accountant.overview">
+             <field name="name">invoice</field>
+
+           </record>
+
+           <record id="object_collection" model="accountant.overview">
+             <field name="name">collection</field>
+
+           </record>
+
+           <record id="object_saleperson" model="accountant.overview">
+             <field name="name">saleperson</field>
+           </record>
+
+           <record id="object_saleteam" model="accountant.overview">
+             <field name="name">saleteam</field>
+           </record>
+
+</odoo>
