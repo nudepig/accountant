@@ -52,7 +52,7 @@
             </field>
         </record>
 
-        <menuitem id="accountant_menu_sun" name="结转损益" parent="main_accountant_menu" action="accountant_sun_action"/>
+       
 
     </data>
 </odoo>

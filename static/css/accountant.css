@@ -179,3 +179,13 @@ textarea.formula {
 max-height: 20rem;
 overflow-y:scroll !important;
 }
+
+.over_20{
+    font-size:20px;
+    margin-top: 3px;
+}
+
+.over_15{
+    font-size:15px;
+    margin-top: 8px;
+}

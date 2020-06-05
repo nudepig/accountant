@@ -147,7 +147,6 @@
                 </tree>
             </field>
         </record>
-
-        <menuitem id="accountant_profit_salesperson" name="按销售员利润表" parent="accountant_profit" action="salesperson_list_action"/>
+        
      </data>
 </odoo>

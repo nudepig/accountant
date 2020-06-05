@@ -67,7 +67,8 @@
                 </tree>
             </field>
         </record>
-        <menuitem id="accountant_stock" name="库存查询" parent="main_accountant_menu"/>
-        <menuitem id="accountant_stock_move" name="按分类库存周转率" parent="accountant_stock" action="accountant_stock_move_action"/>
+
+    
+
 </odoo>
 

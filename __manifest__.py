@@ -24,12 +24,15 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'views/accountant_move_line_view.xml',
+        'views/assetsAdd_templates.xml',
+
+        'views/accountant_menuitem.xml',
         'views/accountant_overview.xml',
         'views/accountant_profit.xml',
         'views/accountant_profit_team.xml',
         'views/accountant_profit_sales.xml',
-        'views/accountant_move_line_view.xml',
-        'views/assetsAdd_templates.xml',
+
         'views/accountant_sun.xml',
         'views/accountant_assets.xml',
         'views/accountant_cash.xml',

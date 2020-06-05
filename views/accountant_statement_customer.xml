@@ -69,51 +69,5 @@
             </tree>
         </field>
     </record>
-
-<!--    <record id="accountant_gross_search" model="ir.ui.view">-->
-<!--        <field name="name">accountant.gross.search</field>-->
-<!--        <field name="model">accountant.customer.gross</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <search>-->
-<!--                <field name="partner_id_name"/>-->
-<!--                <field name="name"/>-->
-<!--                <field name="income"/>-->
-
-<!--                <filter string="名称" name="name" context="{'group_by':'name'}"/>-->
-<!--                <filter string="公司" name="company" groups="base.group_multi_company" context="{'group_by':'company_id'}"/>-->
-<!--                <filter string="业务伙伴" name="Partner" context="{'group_by':'partner_id_name'}"/>-->
-<!--                <filter string="公司" name="company_id" domain="[('company_id','=',1)]"/>-->
-<!--            </search>-->
-<!--        </field>-->
-<!--    </record>-->
-
-<!--    <record id="accountant_gross_pivot" model="ir.ui.view">-->
-<!--        <field name="model">accountant.customer.gross</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <pivot>-->
-<!--                <field name="partner_id_name" type="col" />-->
-<!--                <field name="company_id" />-->
-<!--                <field name="startDate" interval="week" />-->
-<!--                <field name="income" type="measure" />-->
-<!--                <field name="cost" type="measure" />-->
-<!--                <field name="gross_profit" type="measure" />-->
-<!--                <field name="gross_rate" type="measure" />-->
-<!--            </pivot>-->
-<!--        </field>-->
-<!--    </record>-->
-
-<!--    <record id="accountant_gross_graph" model="ir.ui.view">-->
-<!--        <field name="model">accountant.customer.gross</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <graph type="bar">-->
-<!--                <field name="partner_id_name" />-->
-<!--                <field name="income" type="measure" />-->
-<!--            </graph>-->
-<!--        </field>-->
-<!--    </record>-->
-
-
-    <menuitem id="accountant_customer" name="客户" parent="main_accountant_menu"/>
-    <menuitem id="accountant_customer_gross" name="客户毛利率" parent="accountant_customer" action="action_accountant_customer_gross"/>
-
+    
 </odoo>

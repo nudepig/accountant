@@ -101,7 +101,7 @@
             </field>
         </record>
 
-        <menuitem id="cash_menu" name="银行现金流量表" parent="main_accountant_menu" action="cash_list_action"/>
+        <!-- <menuitem id="cash_menu" name="银行现金流量表" parent="main_accountant_menu" action="cash_list_action"/> -->
 
      </data>
 </odoo>

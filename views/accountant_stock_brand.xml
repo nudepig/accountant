@@ -67,7 +67,6 @@
                 </tree>
             </field>
         </record>
-
-        <menuitem id="accountant_stock_brand" name="按品牌库存周转率" parent="accountant_stock" action="accountant_stock_brand_action"/>
+    
 </odoo>
 

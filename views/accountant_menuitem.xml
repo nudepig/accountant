@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="main_accountant_menu" name="会计"/>
+            <menuitem id="main_accountant_overview" name="概览" action="open_accountant_overview_kanban" parent="main_accountant_menu" sequence="1"/>
+
+        <menuitem id="accountant_profit" name="利润表" parent="main_accountant_menu"/>
+            <menuitem id="accountant_profit_sum" name="按公司利润表" parent="accountant_profit" action="course_list_action"/>
+            <menuitem id="accountant_profit_sales_team" name="按销售团队利润表" parent="accountant_profit" action="sales_team_action"/>
+            <menuitem id="accountant_profit_salesperson" name="按销售员利润表" parent="accountant_profit" action="salesperson_list_action"/>
+
+        <menuitem id="accountant_menu_sun" name="结转损益" parent="main_accountant_menu" action="accountant_sun_action"/>
+
+        <menuitem id="assets_menu" name="资产负债表" parent="main_accountant_menu" action="assets_list_action"/>
+
+        <menuitem id="cash_menu" name="银行现金流量表" parent="main_accountant_menu" action="cash_list_action"/>
+
+        <menuitem id="accountant_stock" name="库存查询" parent="main_accountant_menu"/>
+            <menuitem id="accountant_stock_move" name="按分类库存周转率" parent="accountant_stock" action="accountant_stock_move_action"/>
+            <menuitem id="accountant_stock_brand" name="按品牌库存周转率" parent="accountant_stock" action="accountant_stock_brand_action"/>
+            <menuitem id="accountant_stock_gross" name="按分类毛利率" parent="accountant_stock" action="accountant_stock_gross_action"/>
+            <menuitem id="accountant_stock_brand_gross" name="按品牌毛利率" parent="accountant_stock" action="accountant_stock_brand_gross_action"/>
+
+        <menuitem id="accountant_customer" name="客户" parent="main_accountant_menu"/>
+            <menuitem id="accountant_customer_gross" name="客户毛利率" parent="accountant_customer" action="action_accountant_customer_gross"/>
+            <menuitem id="accountant_statement" name="客户对账单" parent="accountant_customer" action="action_accountant_statement"/>
+
+        <menuitem id="accountant_sales" name="销售" parent="main_accountant_menu"/>
+            <menuitem id="accountant_sales_percentage" name="销售提成" parent="accountant_sales" action="action_accountant_sales_percentage"/>
+
+<!--        <menuitem id="accountant_set" name="配置" parent="main_accountant_menu"/>-->
+<!--            <menuitem id="accountant_set_profit" name="利润表公式设置" parent="accountant_set" action="acton_accountant_set_profit"/>-->
+
+
+    </data>
+</odoo>

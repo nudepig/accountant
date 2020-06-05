@@ -293,6 +293,6 @@
             </field>
         </record>
 
-        <menuitem id="assets_menu" name="资产负债表" parent="main_accountant_menu" action="assets_list_action"/>
+        <!-- <menuitem id="assets_menu" name="资产负债表" parent="main_accountant_menu" action="assets_list_action"/> -->
      </data>
 </odoo>

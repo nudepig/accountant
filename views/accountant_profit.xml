@@ -147,12 +147,5 @@
         </record>
 
 
-
-
-        <menuitem id="accountant_profit" name="利润表" parent="main_accountant_menu"/>
-        <menuitem id="accountant_profit_sum" name="按公司利润表" parent="accountant_profit" action="course_list_action"/>
-
-
-
      </data>
 </odoo>

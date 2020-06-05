@@ -87,9 +87,6 @@
             </tree>
         </field>
     </record>
-
-
-
-    <menuitem id="accountant_statement" name="客户对账单" parent="accountant_customer" action="action_accountant_statement"/>
+    
 
 </odoo>

@@ -70,6 +70,6 @@
                 </tree>
             </field>
         </record>
-        <menuitem id="accountant_stock_gross" name="按分类毛利率" parent="accountant_stock" action="accountant_stock_gross_action"/>
+
 </odoo>
 

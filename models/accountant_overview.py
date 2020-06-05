@@ -67,12 +67,12 @@ class AccountantOverview(models.Model):
         collection_result = self.env.cr.dictfetchall()
         (collection_count, collection_sum) = self._collection_sum_results(collection_result)
 
-        sql_salesperson = '''SELECT rp.name, SUM(so.total) as total, COUNT(so.total) as count FROM sale_order as so, res_users as ru, res_partner as rp WHERE so.state = %s AND so.date_order >= %s AND so.company_id = %s AND so.user_id =  ru.id AND ru.partner_id = rp.id GROUP BY rp.name ORDER BY total desc LIMIT 10;
+        sql_salesperson = '''SELECT rp.name, SUM(so.total) as total, COUNT(so.total) as count FROM sale_order as so, res_users as ru, res_partner as rp WHERE so.state = %s AND so.date_order >= %s AND so.company_id = %s AND so.user_id =  ru.id AND ru.partner_id = rp.id GROUP BY rp.name ORDER BY total desc LIMIT 6;
         '''
         self.env.cr.execute(sql_salesperson, ('sale', month, company_id))
         salesperson_result = self.env.cr.dictfetchall()
 
-        sql_salesteam = '''SELECT ct.name, SUM(so.total) as total, COUNT(so.total) as count FROM sale_order as so, crm_team as ct WHERE so.state = 'sale' AND so.date_order >= '2020-6-1' AND so.company_id = 1 AND so.team_id =  ct.id GROUP BY ct.name ORDER BY total desc LIMIT 10;;
+        sql_salesteam = '''SELECT ct.name, SUM(so.total) as total, COUNT(so.total) as count FROM sale_order as so, crm_team as ct WHERE so.state = 'sale' AND so.date_order >= '2020-6-1' AND so.company_id = 1 AND so.team_id =  ct.id GROUP BY ct.name ORDER BY total desc LIMIT 6;;
                 '''
         self.env.cr.execute(sql_salesteam, ('sale', month, company_id))
         salesteam_result = self.env.cr.dictfetchall()

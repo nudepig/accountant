@@ -25,24 +25,24 @@
                         </div>
                     </t>
                     <t t-name="SaleOrder">
-                        <div><t t-esc="dashboard.sale_title"/></div>
-                        <div>销售订单总额：<t t-esc="dashboard.sum_sale_order"/></div>
-                        <div>销售订单数：<t t-esc="dashboard.sale_count"/></div>
+                        <div class="over_20"><t t-esc="dashboard.sale_title"/></div>
+                        <div class="over_15">销售订单总额：<t t-esc="dashboard.sum_sale_order"/></div>
+                        <div class="over_15">销售订单数：<t t-esc="dashboard.sale_count"/></div>
                     </t>
                     <t t-name="quotation">
-                        <div><t t-esc="dashboard.title_quotation"/></div>
-                        <div>报价单总额：<t t-esc="dashboard.quotation_sum"/></div>
-                        <div>报价单数：<t t-esc="dashboard.quotation_count"/></div>
+                        <div class="over_20"><t t-esc="dashboard.title_quotation"/></div>
+                        <div class="over_15">报价单总额：<t t-esc="dashboard.quotation_sum"/></div>
+                        <div class="over_15">报价单数：<t t-esc="dashboard.quotation_count"/></div>
                     </t>
                     <t t-name="invoice">
-                        <div><t t-esc="dashboard.invoice_title"/></div>
-                        <div>本月待开发票总额：<t t-esc="dashboard.invoice_sum"/></div>
-                        <div>本月待开发票单数：<t t-esc="dashboard.invoice_count"/></div>
+                        <div class="over_20"><t t-esc="dashboard.invoice_title"/></div>
+                        <div class="over_15">本月待开发票总额：<t t-esc="dashboard.invoice_sum"/></div>
+                        <div class="over_15">本月待开发票单数：<t t-esc="dashboard.invoice_count"/></div>
                     </t>
                     <t t-name="collection">
-                        <div><t t-esc="dashboard.collection_title"/></div>
-                        <div>本月回款总额：<t t-esc="dashboard.collection_sum"/></div>
-                        <div>本月回款单数：<t t-esc="dashboard.collection_count"/></div>
+                        <div class="over_20"><t t-esc="dashboard.collection_title"/></div>
+                        <div class="over_15">本月回款总额：<t t-esc="dashboard.collection_sum"/></div>
+                        <div class="over_15">本月回款单数：<t t-esc="dashboard.collection_count"/></div>
                     </t>
                     <t t-name="salesperson">
                         <div>
@@ -105,6 +105,5 @@
             </p>
         </field>
     </record>
-    <menuitem id="main_accountant_menu" name="会计"/>
-    <menuitem id="main_accountant_overview" name="概览" action="open_accountant_overview_kanban" parent="main_accountant_menu" sequence="1"/>
+
 </odoo>
