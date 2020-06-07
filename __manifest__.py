@@ -44,6 +44,7 @@
         'views/accountant_statement_customer.xml',
         'views/accountant_invoice_statement.xml',
         'views/accountant_sales_percentage.xml',
+        'views/accountant_set_profit.xml',
 
         'report/accountant_profit_report.xml',
         'report/accountant_balance_report.xml',

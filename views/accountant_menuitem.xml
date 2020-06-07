@@ -28,8 +28,8 @@
         <menuitem id="accountant_sales" name="销售" parent="main_accountant_menu"/>
             <menuitem id="accountant_sales_percentage" name="销售提成" parent="accountant_sales" action="action_accountant_sales_percentage"/>
 
-<!--        <menuitem id="accountant_set" name="配置" parent="main_accountant_menu"/>-->
-<!--            <menuitem id="accountant_set_profit" name="利润表公式设置" parent="accountant_set" action="acton_accountant_set_profit"/>-->
+        <menuitem id="accountant_set" name="配置" parent="main_accountant_menu"/>
+            <menuitem id="accountant_set_profit" name="利润表公式设置" parent="accountant_set" action="acton_accountant_set_profit"/>
 
 
     </data>
