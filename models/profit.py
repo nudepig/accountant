@@ -142,7 +142,6 @@ class AccountantProfit(models.Model):
             raise exceptions.ValidationError('你选择的开始日期不能大于结束日期')
 
         # 主营业务收入
-
         self.amount_a = self._amount_get('amount_a')
         # 主营业务成本
         self.amount_b = self._amount_get('amount_b')
