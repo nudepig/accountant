@@ -123,6 +123,8 @@ class AccountantSalesperson(models.Model):
         amount_sum = 0.0
         for L_dir in result.split(';'):
             s_dir= eval(L_dir)
+            if s_dir == 0:
+                break
             p_dir = s_dir.get('+')
             r_dir = s_dir.get('-')
             if p_dir:

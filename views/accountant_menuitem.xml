@@ -30,6 +30,7 @@
 
         <menuitem id="accountant_set" name="配置" parent="main_accountant_menu"/>
             <menuitem id="accountant_set_profit" name="利润表公式设置" parent="accountant_set" action="acton_accountant_set_profit"/>
+            <menuitem id="accountant_set_balance" name="资产负债表公式设置" parent="accountant_set" action="acton_accountant_set_balance"/>
 
 
     </data>

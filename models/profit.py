@@ -112,6 +112,8 @@ class AccountantProfit(models.Model):
         amount_sum = 0.0
         for L_dir in result.split(';'):
             s_dir= eval(L_dir)
+            if s_dir == 0:
+                break
             p_dir = s_dir.get('+')
             r_dir = s_dir.get('-')
             if p_dir:
@@ -131,6 +133,7 @@ class AccountantProfit(models.Model):
                     amount_sum -= self._profit_credit(int(r_s), int(r_e))
                 else:
                     raise UserError("计算失败！原因:余额方向填写错误")
+
             else:
                 raise UserError("计算失败！原因:+或—填写错误")
 

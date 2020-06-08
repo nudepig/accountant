@@ -2,6 +2,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_accountant_profit,accountant.profit,model_accountant_profit,,1,1,1,1
 access_accountant_profit_set,accountant.profit.set,model_accountant_profit_set,,1,1,1,1
 access_accountant_balance,accountant.balance,model_accountant_balance,,1,1,1,1
+access_accountant_balance_set,accountant.balance.set,model_accountant_balance_set,,1,1,1,1
 access_accountant_sun,accountant.sun,model_accountant_sun,,1,1,1,1
 access_accountant_cash,accountant.cash,model_accountant_cash,,1,1,1,1
 access_accountant_salesperson,accountant.salesperson,model_accountant_salesperson,,1,1,1,1

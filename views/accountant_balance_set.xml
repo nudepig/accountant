@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="acton_accountant_set_balance">
+            <field name="name">资产负债表设置</field>
+            <field name="res_model">accountant.balance.set</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+<!--表单视图-->
+
+        <record id="accountant_set_balance_view_form" model="ir.ui.view">
+            <field name="name">资产负债表设置</field>
+            <field name="model">accountant.balance.set</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                            <group col="4" colspan="2">
+                                <field name="name"/>
+                                <field name="company_id"/>
+                            </group>
+                            <group col="4" colspan="2">
+                                <field name="amount_b"/>
+                                <field name="amount_c"/>
+                                <field name="amount_d"/>
+                                <field name="amount_e"/>
+                                <field name="amount_f"/>
+                                <field name="amount_g"/>
+                                <field name="amount_h"/>
+                                <field name="amount_i"/>
+                                <field name="amount_j"/>
+                                <field name="amount_k"/>
+                            </group>
+
+                            <group col="4" colspan="2">
+                                <field name="amount_m"/>
+                                <field name="amount_n"/>
+                                <field name="amount_o"/>
+                                <field name="amount_p"/>
+                                <field name="amount_q"/>
+                                <field name="amount_r"/>
+                                <field name="amount_s"/>
+                                <field name="amount_t"/>
+                                <field name="amount_v"/>
+                                <field name="amount_u"/>
+                                <field name="amount_w"/>
+                                <field name="amount_x"/>
+                                <field name="amount_y"/>
+                                <field name="amount_z"/>
+                                <field name="amount_aa"/>
+                                <field name="amount_bb"/>
+                                <field name="amount_cc"/>
+                            </group>
+
+                            <group col="4" colspan="2">
+                                <field name="debt_a"/>
+                                <field name="debt_b"/>
+                                <field name="debt_c"/>
+                                <field name="debt_d"/>
+                                <field name="debt_e"/>
+                                <field name="debt_f"/>
+                                <field name="debt_g"/>
+                                <field name="debt_h"/>
+                                <field name="debt_i"/>
+                                <field name="debt_j"/>
+                                <field name="debt_k"/>
+                                <field name="debt_l"/>
+                            </group>
+
+                            <group col="4" colspan="2">
+                                <field name="debt_n"/>
+                                <field name="debt_o"/>
+                                <field name="debt_p"/>
+                                <field name="debt_q"/>
+                                <field name="debt_r"/>
+                                <field name="debt_s"/>
+                                <field name="debt_t"/>
+                            </group>
+
+                            <group col="4" colspan="2">
+                                <field name="equity_a"/>
+                                <field name="equity_b"/>
+                                <field name="equity_c"/>
+                                <field name="equity_d"/>
+                            </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!--自定义树状视图-->
+        <record id="accountant_set_balance_view_tree" model="ir.ui.view">
+            <field name="name">资产负债表设置</field>
+            <field name="model">accountant.balance.set</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+     </data>
+</odoo>
