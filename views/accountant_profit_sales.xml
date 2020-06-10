@@ -147,6 +147,30 @@
                 </tree>
             </field>
         </record>
+
+        <record id="accountant_profit_salesperson_list_search" model="ir.ui.view">
+            <field name="model">accountant.salesperson</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="company_id" />
+                    <field name="salesperson" />
+                    <filter name="company_id"
+                        string="筛选云辅材公司"
+                        domain="[('company_id','=',1)]" />
+
+                    <filter name="company_id"
+                        string="按公司分组"
+                        context="{'group_by': 'company_id'}" />
+
+                    <filter name="salesperson"
+                        string="按销售员分组"
+                        context="{'group_by': 'salesperson'}" />
+
+
+                </search>
+            </field>
+        </record>
         
      </data>
 </odoo>

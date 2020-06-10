@@ -293,6 +293,22 @@
             </field>
         </record>
 
-        <!-- <menuitem id="assets_menu" name="资产负债表" parent="main_accountant_menu" action="assets_list_action"/> -->
+        <record id="accountant_assets_list_search" model="ir.ui.view">
+            <field name="model">accountant.balance</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="company_id" />
+                    <filter name="company_id"
+                        string="筛选云辅材公司"
+                        domain="[('company_id','=',1)]" />
+
+                    <filter name="company_id"
+                        string="按公司分组"
+                        context="{'group_by': 'company_id'}" />
+                </search>
+            </field>
+        </record>
+
      </data>
 </odoo>

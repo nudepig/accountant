@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo  noupdate="1">
+    <data>
+
+            <record id="accountant_profit_set_default" model="accountant.profit.set">
+                <field name="name">默认利润表公式设置</field>
+                <field name="company_id">1</field>
+                <field name="amount_a">{'+':'credit,600100, 600100'}</field>
+                <field name="amount_b">{'+':'debit,640100, 640100'}</field>
+                <field name="amount_d">{'+':'credit,605100, 605100'};{'-':'debit,640200, 640200'}</field>
+                <field name="amount_e">{'+':'debit,660100, 660199'}</field>
+                <field name="amount_f">{'+':'debit,660200, 660299'}</field>
+                <field name="amount_g">{'+':'debit,660300, 660399'}</field>
+                <field name="amount_i">{'+':'credit,630100, 630100'}</field>
+                <field name="amount_j">{'+':'debit,671100, 671100'}</field>
+                <field name="amount_l">{'+':'debit,680100, 690100'}</field>
+                <field name="amount_n">{'+':'debit,670100, 670100'}</field>
+                <field name="amount_o">{'+':'credit,611100, 611100'}</field>
+                <field name="amount_p">{'+':'credit,610100, 610100'}</field>
+           </record>
+    </data>
+</odoo>

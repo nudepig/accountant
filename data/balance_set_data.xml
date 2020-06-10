@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo  noupdate="1">
+    <data>
+
+            <record id="accountant_balance_set_default" model="accountant.balance.set">
+                <field name="name">默认资产负债表公式设置</field>
+                <field name="company_id">1</field>
+                <field name="amount_b">{'+':'debit,1001, 101299'}</field>
+                <field name="amount_c">{'+':'debit,150300, 150300'}</field>
+                <field name="amount_d">{'+':'debit,112100, 112100'}</field>
+                <field name="amount_e">{'+':'debit,112200, 112200'};{'+':'debit,11230001, 11230001'};{'-':'credit,123100, 123100'}</field>
+                <field name="amount_f">{'+':'debit,112300, 112300'}</field>
+                <field name="amount_g">{'+':'debit,113100, 113100'}</field>
+                <field name="amount_h">{'+':'debit,122100, 122100'}</field>
+                <field name="amount_i">{'+':'debit,140100, 147100'}</field>
+                <field name="amount_j">0</field>
+                <field name="amount_k">0</field>
+                <field name="amount_m">{'+':'debit,150300, 150300'}</field>
+                <field name="amount_n">{'+':'debit,150100, 150200'}</field>
+                <field name="amount_o">{'+':'debit,153100, 153100'}</field>
+                <field name="amount_p">{'+':'debit,151100, 151200'}</field>
+                <field name="amount_q">{'+':'debit,152100, 152100'}</field>
+                <field name="amount_r">{'+':'debit,160100, 160300'}</field>
+                <field name="amount_s">{'+':'debit,160400, 160400'}</field>
+                <field name="amount_t">{'+':'debit,160500, 160500'}</field>
+                <field name="amount_v">{'+':'debit,160600, 160600'}</field>
+                <field name="amount_u">{'+':'debit,162100, 162200'}</field>
+                <field name="amount_w">0</field>
+                <field name="amount_x">{'+':'debit,170100, 170300'}</field>
+                <field name="amount_y">0</field>
+                <field name="amount_z">{'+':'debit,171100, 171100'}</field>
+                <field name="amount_aa">{'+':'debit,180100, 180100'}</field>
+                <field name="amount_bb">0</field>
+                <field name="amount_cc">{'+':'debit,190100, 190100'}</field>
+                <field name="debt_a">{'+':'credit,200100, 200100'}</field>
+                <field name="debt_b">0</field>
+                <field name="debt_c">{'+':'credit,220100, 220100'}</field>
+                <field name="debt_d">{'+':'credit,220200, 220200'}</field>
+                <field name="debt_e">{'+':'credit,220300, 220300'}</field>
+                <field name="debt_f">{'+':'credit,221100, 221199'}</field>
+                <field name="debt_g">{'+':'credit,222100, 222115'};{'+':'credit,22210101, 22210199'}</field>
+                <field name="debt_h">{'+':'credit,223100, 223100'}</field>
+                <field name="debt_i">{'+':'credit,223200, 223200'}</field>
+                <field name="debt_j">{'+':'credit,224100, 224100'}</field>
+                <field name="debt_k">0</field>
+                <field name="debt_l">{'+':'credit,224101, 240100'}</field>
+                <field name="debt_n">{'+':'credit,250100, 250100'}</field>
+                <field name="debt_o">{'+':'credit,250200, 250200'}</field>
+                <field name="debt_p">{'+':'credit,270100, 270100'}</field>
+                <field name="debt_q">{'+':'credit,271100, 271100'}</field>
+                <field name="debt_r">{'+':'credit,280100, 280100'}</field>
+                <field name="debt_s">{'+':'credit,290100, 290100'}</field>
+                <field name="debt_t">0</field>
+                <field name="equity_a">{'+':'credit,400100, 400100'}</field>
+                <field name="equity_b">{'+':'credit,400200, 400200'}</field>
+                <field name="equity_c">{'+':'credit,310101, 310409'};{'+':'credit,410100, 410100'}</field>
+                <field name="equity_d">{'+':'credit,310410, 310415'};{'+':'credit,400300, 400300'};{'+':'credit,410300, 410400'};{'+':'credit,999999, 999999'}</field>
+           </record>
+    </data>
+</odoo>

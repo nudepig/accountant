@@ -26,8 +26,11 @@
         'security/ir.model.access.csv',
         'views/accountant_move_line_view.xml',
         'views/assetsAdd_templates.xml',
+        'data/overview_data.xml',
+        'data/profit_set_data.xml',
+        'data/balance_set_data.xml',
 
-        'views/accountant_menuitem.xml',
+
         'views/accountant_overview.xml',
         'views/accountant_profit.xml',
         'views/accountant_profit_team.xml',
@@ -47,6 +50,8 @@
         'views/accountant_set_profit.xml',
         'views/accountant_balance_set.xml',
 
+        'views/accountant_menuitem.xml',
+
         'report/accountant_profit_report.xml',
         'report/accountant_balance_report.xml',
         'report/accountant_cash_report.xml',
@@ -54,7 +59,7 @@
     ],
     # only loaded in demonstration mode
     'demo': [
-        'demo/accountant_overview.xml',
+
     ],
     'css': [
         'static/css/accountant.css',

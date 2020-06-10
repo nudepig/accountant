@@ -64,8 +64,6 @@
             </field>
     </record>
 
-
-
     <!--自定义树状视图-->
     <record id="accountant_sales_percentage_view_tree2" model="ir.ui.view">
         <field name="name">销售提成</field>
@@ -80,5 +78,25 @@
             </tree>
         </field>
     </record>
+
+    <record id="accountant_sales_percentage_search" model="ir.ui.view">
+            <field name="model">accountant.sales.percentage</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="company_id" />
+                    <field name="user_id" />
+                    <filter name="company_id"
+                        string="筛选云辅材公司"
+                        domain="[('company_id','=',1)]" />
+                    <filter name="company_id"
+                        string="按公司分组"
+                        context="{'group_by': 'company_id'}" />
+                    <filter name="company_id"
+                        string="按销售员分组"
+                        context="{'group_by': 'user_id'}" />
+                </search>
+            </field>
+        </record>
 
 </odoo>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record model="ir.actions.act_window" id="course_list_action">
+        <record model="ir.actions.act_window" id="profit_list_action">
             <field name="name">利润表</field>
             <field name="res_model">accountant.profit</field>
             <field name="view_type">form</field>
@@ -146,6 +146,22 @@
             </field>
         </record>
 
+        <record id="accountant_profit_list_search" model="ir.ui.view">
+            <field name="model">accountant.profit</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="company_id" />
+                    <filter name="company_id"
+                        string="筛选云辅材公司"
+                        domain="[('company_id','=',1)]" />
+
+                    <filter name="company_id"
+                        string="按公司分组"
+                        context="{'group_by': 'company_id'}" />
+                </search>
+            </field>
+        </record>
 
      </data>
 </odoo>

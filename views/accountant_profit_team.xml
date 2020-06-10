@@ -147,6 +147,28 @@
                 </tree>
             </field>
         </record>
+
+        <record id="accountant_sales_team_profit_search" model="ir.ui.view">
+            <field name="model">accountant.team</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="team"/>
+                    <filter name="company_id"
+                        string="筛选云辅材公司"
+                        domain="[('company_id','=',1)]" />
+
+                    <filter name="company_id"
+                        string="按公司分组"
+                        context="{'group_by': 'company_id'}" />
+
+                    <filter name="team"
+                        string="按销售团队分组"
+                        context="{'group_by': 'team'}" />
+                </search>
+            </field>
+        </record>
         
      </data>
 </odoo>

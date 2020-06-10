@@ -74,12 +74,14 @@ class AccountantTeam(models.Model):
                                           ('date', '<=', start_e),
                                           ('account_id', '=', account_id),
                                           ('company_id', '=', self.company_id.id),
-                                          ('partner_id', 'in', sales_team)]).mapped('debit'))
+                                          '|', ('partner_id', 'in', sales_team),
+                                          ('team_id', '=', self.team.id)]).mapped('debit'))
         credit = sum(amount_mapped.search([('date', '>=', start_s),
                                            ('date', '<=', start_e),
                                            ('account_id', '=', account_id),
                                            ('company_id', '=', self.company_id.id),
-                                           ('partner_id', 'in', sales_team)]).mapped('credit'))
+                                           '|', ('partner_id', 'in', sales_team),
+                                           ('team_id', '=', self.team.id)]).mapped('credit'))
         balance = debit - credit
         return balance
 
@@ -93,12 +95,14 @@ class AccountantTeam(models.Model):
                                           ('date', '<=', start_e),
                                           ('account_id', '=', account_id),
                                           ('company_id', '=', self.company_id.id),
-                                          ('partner_id', 'in', sales_team)]).mapped('debit'))
+                                          '|',('partner_id', 'in', sales_team),
+                                          ('team_id', '=', self.team.id)]).mapped('debit'))
         credit = sum(amount_mapped.search([('date', '>=', start_s),
                                            ('date', '<=', start_e),
                                            ('account_id', '=', account_id),
                                            ('company_id', '=', self.company_id.id),
-                                           ('partner_id', 'in', sales_team)]).mapped('credit'))
+                                           '|', ('partner_id', 'in', sales_team),
+                                           ('team_id', '=', self.team.id)]).mapped('credit'))
         balance = credit - debit
         return balance
 

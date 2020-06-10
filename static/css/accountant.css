@@ -181,11 +181,21 @@ overflow-y:scroll !important;
 }
 
 .over_20{
-    font-size:20px;
-    margin-top: 3px;
+    font-size:22px;
+    margin-top: 10px;
+    color: #5f5e97;
+
 }
 
 .over_15{
-    font-size:15px;
-    margin-top: 8px;
+    font-size:18px;
+    margin-top: 10px;
 }
+
+.over_top{
+    font-size:22px;
+    margin-top: 15px;
+    color: #5f5e97;
+
+}
+

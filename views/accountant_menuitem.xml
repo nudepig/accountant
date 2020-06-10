@@ -5,7 +5,7 @@
             <menuitem id="main_accountant_overview" name="概览" action="open_accountant_overview_kanban" parent="main_accountant_menu" sequence="1"/>
 
         <menuitem id="accountant_profit" name="利润表" parent="main_accountant_menu"/>
-            <menuitem id="accountant_profit_sum" name="按公司利润表" parent="accountant_profit" action="course_list_action"/>
+            <menuitem id="accountant_profit_sum" name="按公司利润表" parent="accountant_profit" action="profit_list_action"/>
             <menuitem id="accountant_profit_sales_team" name="按销售团队利润表" parent="accountant_profit" action="sales_team_action"/>
             <menuitem id="accountant_profit_salesperson" name="按销售员利润表" parent="accountant_profit" action="salesperson_list_action"/>
 
@@ -29,8 +29,8 @@
             <menuitem id="accountant_sales_percentage" name="销售提成" parent="accountant_sales" action="action_accountant_sales_percentage"/>
 
         <menuitem id="accountant_set" name="配置" parent="main_accountant_menu"/>
-            <menuitem id="accountant_set_profit" name="利润表公式设置" parent="accountant_set" action="acton_accountant_set_profit"/>
-            <menuitem id="accountant_set_balance" name="资产负债表公式设置" parent="accountant_set" action="acton_accountant_set_balance"/>
+            <menuitem id="accountant_set_profit" name="利润表公式设置" parent="accountant_set" action="action_accountant_set_profit"/>
+            <menuitem id="accountant_set_balance" name="资产负债表公式设置" parent="accountant_set" action="action_accountant_set_balance"/>
 
 
     </data>

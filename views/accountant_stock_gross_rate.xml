@@ -44,7 +44,7 @@
                             </group>
                         </group>
                         <group>
-                            <field name="fast_period" widget="ac_fast_period" />
+                            <field name="fast_period" widget="ac_fast_picker" />
                         </group>
                         <footer>
                             <button name="accountant_income_rate" type="object" string="开始计算毛利率" class='btn-primary' />
@@ -68,6 +68,23 @@
                     <field name="startDate"/>
                     <field name="endDate"/>
                 </tree>
+            </field>
+        </record>
+
+        <record id="accountant_stock_gross_search" model="ir.ui.view">
+            <field name="model">accountant.stock.gross</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="company_id" />
+                    <filter name="company_id"
+                        string="筛选云辅材公司"
+                        domain="[('company_id','=',1)]" />
+
+                    <filter name="company_id"
+                        string="按公司分组"
+                        context="{'group_by': 'company_id'}" />
+                </search>
             </field>
         </record>
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo  noupdate="1">
+    <data>
+
+
+           <record id="object_sale" model="accountant.overview">
+             <field name="name">sale</field>
+
+           </record>
+
+           <record id="object_invoice" model="accountant.overview">
+             <field name="name">invoice</field>
+
+           </record>
+
+           <record id="object_collection" model="accountant.overview">
+             <field name="name">salesperson</field>
+
+           </record>
+
+           <record id="object_saleperson" model="accountant.overview">
+             <field name="name">salesteam</field>
+           </record>
+
+
+    </data>
+</odoo>

@@ -377,6 +377,7 @@ class AccountantBalance(models.Model):
         self.equity_f = self.debt_v + self.equity_e
 
 
+
 class AccountantBalanceSet(models.Model):
     _name = 'accountant.balance.set'
     _description = 'this is balance set'

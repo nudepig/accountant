@@ -14,10 +14,8 @@
                         <div class="container o_kanban_card_content" style="">
                             <div class="row">
                                 <div class="col-11">
-                                    <t t-if="(name_type == 'quotation')" t-call="quotation"/>
                                     <t t-if="(name_type == 'sale')" t-call="SaleOrder"/>
                                     <t t-if="(name_type == 'invoice')" t-call="invoice"/>
-                                    <t t-if="(name_type == 'collection')" t-call="collection"/>
                                     <t t-if="(name_type == 'salesperson')" t-call="salesperson"/>
                                     <t t-if="(name_type == 'salesteam')" t-call="salesteam"/>
                                 </div>
@@ -25,24 +23,31 @@
                         </div>
                     </t>
                     <t t-name="SaleOrder">
-                        <div class="over_20"><t t-esc="dashboard.sale_title"/></div>
-                        <div class="over_15">销售订单总额：<t t-esc="dashboard.sum_sale_order"/></div>
-                        <div class="over_15">销售订单数：<t t-esc="dashboard.sale_count"/></div>
-                    </t>
-                    <t t-name="quotation">
-                        <div class="over_20"><t t-esc="dashboard.title_quotation"/></div>
-                        <div class="over_15">报价单总额：<t t-esc="dashboard.quotation_sum"/></div>
-                        <div class="over_15">报价单数：<t t-esc="dashboard.quotation_count"/></div>
+                        <div>
+                            <div class="over_20"><t t-esc="dashboard.title_quotation"/></div>
+                            <ul class="over_15"><li>报价单总额：<t t-esc="dashboard.quotation_sum"/></li></ul>
+                            <ul class="over_15"><li>报价单数：<t t-esc="dashboard.quotation_count"/></li></ul>
+                        </div>
+                        <div>
+                            <div class="over_top"><t t-esc="dashboard.sale_title"/></div>
+                            <ul class="over_15"><li>销售订单总额：<t t-esc="dashboard.sum_sale_order"/></li></ul>
+                            <ul class="over_15"><li>销售订单数：<t t-esc="dashboard.sale_count"/></li></ul>
+                        </div>
+
+
                     </t>
                     <t t-name="invoice">
-                        <div class="over_20"><t t-esc="dashboard.invoice_title"/></div>
-                        <div class="over_15">本月待开发票总额：<t t-esc="dashboard.invoice_sum"/></div>
-                        <div class="over_15">本月待开发票单数：<t t-esc="dashboard.invoice_count"/></div>
-                    </t>
-                    <t t-name="collection">
-                        <div class="over_20"><t t-esc="dashboard.collection_title"/></div>
-                        <div class="over_15">本月回款总额：<t t-esc="dashboard.collection_sum"/></div>
-                        <div class="over_15">本月回款单数：<t t-esc="dashboard.collection_count"/></div>
+                        <div>
+                            <div class="over_20"><t t-esc="dashboard.invoice_title"/></div>
+                            <ul class="over_15"><li>本月待开发票总额：<t t-esc="dashboard.invoice_sum"/></li></ul>
+                            <ul class="over_15"><li>本月待开发票单数：<t t-esc="dashboard.invoice_count"/></li></ul>
+                        </div>
+                        <div>
+                            <div class="over_top"><t t-esc="dashboard.collection_title"/></div>
+                            <ul class="over_15"><li>本月回款总额：<t t-esc="dashboard.collection_sum"/></li></ul>
+                            <ul class="over_15"><li>本月回款单数：<t t-esc="dashboard.collection_count"/></li></ul>
+                        </div>
+
                     </t>
                     <t t-name="salesperson">
                         <div>
