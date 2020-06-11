@@ -16,6 +16,7 @@ from odoo.tools import date_utils
 
 class AccountantOverview(models.Model):
     _name = "accountant.overview"
+    _description = 'this is overview'
 
     currency_id = fields.Many2one('res.currency', help='The currency used to enter statement', string="Currency",
                                   oldname='currency')

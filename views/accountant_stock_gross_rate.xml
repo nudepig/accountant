@@ -36,7 +36,7 @@
                         <group>
                             <group>
                                 <field name="name"/>
-                                <field name="company_id"/>
+                                <field name="company_id" options="{'no_create': True, 'no_edit': True}"/>
                             </group>
                             <group>
                                 <field name="startDate" editable='0' />

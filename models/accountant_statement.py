@@ -46,6 +46,7 @@ class AccountantCustomerGross(models.Model):
 class AccountantCustomerGrossLine(models.Model):
     _description = 'this is stock brand gross line'
     _name = 'accountant.customer.gross.line'
+    name = fields.Char(string="报表名称", required=True)
     partner_id_name = fields.Char(string="合作伙伴名称", store=True, readonly=True)
     company_currency_id = fields.Many2one('res.currency', related='company_id.currency_id',
                                           string="Company Currency", readonly=True, store=True)
@@ -92,8 +93,6 @@ class AccountantCustomerGrossLine(models.Model):
                     'gross_profit': gross_profit,
                     'gross_rate': gross_rate,
                     'company_id': company_id,
-                    'startDate': startDate,
-                    'endDate': endDate,
                     'partner_id_name': partner_id_name
                 }
                 self.create(values)

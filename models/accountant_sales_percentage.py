@@ -109,7 +109,7 @@ class AccountantSalesPercentageLine(models.Model):
                                                                   ('account_id', '=', 5)]).mapped('balance'))
             residual_signed = self.env['account.invoice'].search([('id', '=', invoice_id)]).residual_signed
             sql_pay = '''select payment_id from account_invoice_payment_rel where invoice_id = %s;'''
-            self.env.cr.execute(sql_pay, (invoice_id))
+            self.env.cr.execute(sql_pay, (invoice_id,))
             result_pay = self.env.cr.dictfetchall()
             payment = [x['payment_id'] for x in result_pay]
             discount = sum(self.env['account.move.line'].search([('payment_id', 'in', payment),
@@ -141,8 +141,6 @@ class AccountantSalesPercentageLine(models.Model):
                 'balance': residual_signed,
                 'discount': discount,
                 'move_id': move_id,
-                'startDate': startDate,
-                'endDate': endDate,
             }
             super(AccountantSalesPercentageLine, self).create(vals)
 

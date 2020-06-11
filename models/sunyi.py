@@ -33,7 +33,7 @@ class AccountantSun(models.Model):
             'ref': self.ref,
             'company_id': self.company_id.id
         }
-        self.env(user=2)['account.move'].create(sun_write)
+        self.sudo().env['account.move'].create(sun_write)
         return self.sun_entry_line()
 
     @api.multi
