@@ -72,7 +72,7 @@ class AccountantOverview(models.Model):
         self.env.cr.execute(sql_salesperson, ('sale', month, company_id))
         salesperson_result = self.env.cr.dictfetchall()
 
-        sql_salesteam = '''SELECT ct.name, SUM(so.total) as total, COUNT(so.total) as count FROM sale_order as so, crm_team as ct WHERE so.state = 'sale' AND so.date_order >= '2020-6-1' AND so.company_id = 1 AND so.team_id =  ct.id GROUP BY ct.name ORDER BY total desc LIMIT 6;;
+        sql_salesteam = '''SELECT ct.name, SUM(so.total) as total, COUNT(so.total) as count FROM sale_order as so, crm_team as ct WHERE so.state = %s AND so.date_order >= %s AND so.company_id = %s AND so.team_id =  ct.id GROUP BY ct.name ORDER BY total desc LIMIT 6;;
                 '''
         self.env.cr.execute(sql_salesteam, ('sale', month, company_id))
         salesteam_result = self.env.cr.dictfetchall()
