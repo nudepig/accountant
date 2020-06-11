@@ -86,10 +86,10 @@ class AccountantOverview(models.Model):
             'quotation_count' : quotation_count,
             'invoice_title' : '本月待开发票统计',
             'invoice_count' : invoice_count,
-            'invoice_sum' : invoice_sum,
+            'invoice_sum' : formatLang(self.env, currency.round(invoice_sum) + 0.0, currency_obj=currency),
             'collection_title': '本月回款统计',
             'collection_count': collection_count,
-            'collection_sum': collection_sum,
+            'collection_sum': formatLang(self.env, currency.round(collection_sum) + 0.0, currency_obj=currency),
             'salesperson_result': salesperson_result,
             'salesteam_result': salesteam_result,
 
