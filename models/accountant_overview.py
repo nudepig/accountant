@@ -35,10 +35,6 @@ class AccountantOverview(models.Model):
         currency = self.env.user.company_id.currency_id
         today = fields.Date.today()
         month = date_utils.start_of(today, 'month')
-        # sum_sale_order = sum(self.env['sale.order'].search([('state', '=', 'sale'), ('date_order', '<=', today),('date_order', '>=', today)]).mapped('total'))
-        # print('888'*100)
-        # print(today)
-        # print('%.2f' %sum_sale_order)
 
         company_id = self.env.user.company_id.id
 
@@ -50,9 +46,9 @@ class AccountantOverview(models.Model):
         (quotation_count, quotation_sum) = self._sale_sum_results(quotation_result)
 
 
-        sql_sale='''SELECT total FROM sale_order WHERE state = %s AND date_order >= %s AND company_id = %s;
+        sql_sale='''SELECT total FROM sale_order WHERE state IN %s AND date_order >= %s AND company_id = %s;
         '''
-        self.env.cr.execute(sql_sale, ('sale', month, company_id))
+        self.env.cr.execute(sql_sale, (('sale', 'done'), month, company_id))
         sale_result = self.env.cr.dictfetchall()
         (sale_count, sale_sum) = self._sale_sum_results(sale_result)
 
@@ -68,14 +64,14 @@ class AccountantOverview(models.Model):
         collection_result = self.env.cr.dictfetchall()
         (collection_count, collection_sum) = self._collection_sum_results(collection_result)
 
-        sql_salesperson = '''SELECT rp.name, SUM(so.total) as total, COUNT(so.total) as count FROM sale_order as so, res_users as ru, res_partner as rp WHERE so.state = %s AND so.date_order >= %s AND so.company_id = %s AND so.user_id =  ru.id AND ru.partner_id = rp.id GROUP BY rp.name ORDER BY total desc LIMIT 6;
+        sql_salesperson = '''SELECT rp.name, round(cast(SUM(so.total) as numeric), 2) as total, COUNT(so.total) as count FROM sale_order as so, res_users as ru, res_partner as rp WHERE so.state IN %s AND so.date_order >= %s AND so.company_id = %s AND so.user_id =  ru.id AND ru.partner_id = rp.id GROUP BY rp.name ORDER BY total desc LIMIT 6;
         '''
-        self.env.cr.execute(sql_salesperson, ('sale', month, company_id))
+        self.env.cr.execute(sql_salesperson, (('sale', 'done'), month, company_id))
         salesperson_result = self.env.cr.dictfetchall()
 
-        sql_salesteam = '''SELECT ct.name, SUM(so.total) as total, COUNT(so.total) as count FROM sale_order as so, crm_team as ct WHERE so.state = %s AND so.date_order >= %s AND so.company_id = %s AND so.team_id =  ct.id GROUP BY ct.name ORDER BY total desc LIMIT 6;;
+        sql_salesteam = '''SELECT ct.name, round(cast(SUM(so.total) as numeric), 2) as total, COUNT(so.total) as count FROM sale_order as so, crm_team as ct WHERE so.state IN %s AND so.date_order >= %s AND so.company_id = %s AND so.team_id =  ct.id GROUP BY ct.name ORDER BY total desc LIMIT 6;;
                 '''
-        self.env.cr.execute(sql_salesteam, ('sale', month, company_id))
+        self.env.cr.execute(sql_salesteam, (('sale', 'done'), month, company_id))
         salesteam_result = self.env.cr.dictfetchall()
 
         return {
